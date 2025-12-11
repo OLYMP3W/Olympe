@@ -19,24 +19,28 @@
             --accent: #00D4FF;
             --purple: #8A2BE2;
         }
-        html, body { margin: 0; height: 100%; overflow-x: hidden; }
+        html, body { margin: 0; min-height: 100%; overflow-x: hidden; }
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            background: #000;
             color: var(--text);
             line-height: 1.6;
-            background: linear-gradient(to bottom, #000000 0%, #000000 60%, #1a0033 100%), #000;
             position: relative;
         }
-        /* Le dégradé violet descend jusqu'au footer mais s'arrête avant */
-        body::before {
+
+        /* Le violet commence seulement à partir de la section témoignages */
+        .purple-gradient-start {
+            position: relative;
+        }
+        .purple-gradient-start::before {
             content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 200px;
-            background: linear-gradient(to bottom, transparent 0%, #0d001a 70%, #1a0033 100%);
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, #0a001a 50%, #1a0033 100%);
             pointer-events: none;
             z-index: -1;
         }
+
         .card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; }
         .title { font-weight: 900; font-size: clamp(2.8rem, 8vw, 5.8rem); letter-spacing: -2px; line-height: 1.02; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.2,1,0.3,1); }
@@ -49,7 +53,7 @@
         .btn-primary:hover { opacity: .92; transform: scale(1.04); }
         .btn-ghost { border: 1px solid var(--line); padding: 0.9rem 2rem; border-radius: 999px; color: var(--muted); transition: all .3s; }
         .btn-ghost:hover { border-color: white; color: white; }
-        footer { background: #000 !important; border-top: 1px solid var(--line); padding: 3rem 1rem; }
+        footer { background: #000 !important; border-top: 1px solid var(--line); padding: 3rem 1rem; position: relative; z-index: 1; }
         @media (max-width: 640px) {
             .hero { padding: 7rem 1rem 5rem; }
         }
@@ -69,7 +73,7 @@
                 <a href="#projets" class="hover:text-white">Projets</a>
                 <a href="#vision" class="hover:text-white">Vision</a>
                 <a href="#afrique" class="hover:text-white">Afrique</a>
-                <a href="#contact" class="btn-primary">Contact stratégique</a>
+                <a href="#contact" class="btn-primary">Contact</a>
             </nav>
             <button id="mobile-toggle" class="md:hidden text-2xl text-white"><i class="fas fa-bars"></i></button>
         </div>
@@ -92,7 +96,7 @@
         </div>
     </section>
 
-    <!-- COMPÉTENCES (tout remises + encore plus) -->
+    <!-- COMPÉTENCES -->
     <section id="competences" class="max-w-7xl mx-auto px-6 py-24">
         <h2 class="text-5xl font-black text-center mb-20 reveal">Domaines de maîtrise absolue</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 reveal">
@@ -103,7 +107,7 @@
             <div class="card p-8 text-center hover-lift stagger" data-delay="0.5"><i class="fas fa-code text-5xl text-pink-400 mb-4"></i><p class="font-bold text-lg">Fullstack & Low-Code</p></div>
             <div class="card p-8 text-center hover-lift stagger" data-delay="0.6"><i class="fas fa-users-cog text-5xl text-indigo-400 mb-4"></i><p class="font-bold text-lg">Product & Growth Strategy</p></div>
             <div class="card p-8 text-center hover-lift stagger" data-delay="0.7"><i class="fas fa-globe-africa text-5xl text-orange-400 mb-4"></i><p class="font-bold text-lg">Souveraineté Numérique Afrique</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.8"><i class="fas fa-rocket text-5xl text-red-400 mb-4"></i><p class="font-bold text-lg">Fundraising & Scaling</p></div>
+            <div class="card p-8 text-center hover-lift stagger" data-delay="0.8"><i class="fas fa-rocket text-5xl text-red-400 mb-4"></i><p class="font-bold text-lg">Fundraising & Scaling Global</p></div>
         </div>
     </section>
 
@@ -132,7 +136,7 @@
         </div>
     </section>
 
-    <!-- MA VISION DE LA VIE & L'INNOVATION -->
+    <!-- MA VISION -->
     <section id="vision" class="py-40 text-center px-6">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-6xl font-black mb-16 reveal">Comment je vois la vie</h2>
@@ -141,7 +145,7 @@
                 <p>Je crois au <span class="text-cyan-400 font-black">nécessaire</span>.</p>
                 <p class="mt-12">L’innovation n’est pas un hobby.<br>C’est une <span class="text-purple-400 font-black">responsabilité historique</span>.</p>
                 <p class="mt-12 text-4xl">Mon seul objectif :</p>
-                <p class="text-5xl font-black text-gradient bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                <p class="text-5xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                     Que l’Afrique devienne la première puissance technologique du XXIe siècle.<br>
                     Et que plus jamais on ne nous dise ce qu’on doit faire de notre futur.
                 </p>
@@ -155,52 +159,55 @@
         <div class="grid md:grid-cols-3 gap-12">
             <div class="card p-12 reveal"><p class="text-5xl font-black text-cyan-400">14</p><p class="text-2xl text-gray-400 mt-4">Pays partenaires</p></div>
             <div class="card p-12 reveal"><p class="text-5xl font-black text-purple-400">€31M</p><p class="text-2xl text-gray-400 mt-4">Levés sur le continent</p></div>
-            <div class="card p-12 reveal"><p class="text-5xl font-black text-green-400">2027</p><p class="text-2xl text-gray-400 mt-4">Athena.OS déployé dans 20 pays</p></div>
+            <div class="card p-12 reveal"><p class="text-5xl font-black text-green-400">2027</p><p class="text-2xl text-gray-400 mt-4">Athena.OS dans 20 pays</p></div>
         </div>
     </section>
 
-    <!-- TÉMOIGNAGES -->
-    <section class="max-w-7xl mx-auto px-6 py-24 bg-white/5">
-        <h2 class="text-5xl font-black text-center mb-16 reveal">Ce qu’ils disent de moi</h2>
-        <div class="grid md:grid-cols-3 gap-12">
-            <div class="card p-10 stagger" data-delay="0.1">
-                <p class="italic text-xl text-gray-300 mb-8">"Olympe ne construit pas des startups. Il construit l’avenir de l’Afrique."</p>
-                <p class="font-bold text-cyan-400 text-lg">M. le Ministre du Numérique — Sénégal</p>
+    <!-- === ICI COMMENCE LE VIOLET === -->
+    <div class="purple-gradient-start">
+        <!-- TÉMOIGNAGES -->
+        <section class="max-w-7xl mx-auto px-6 py-32">
+            <h2 class="text-5xl font-black text-center mb-20 reveal">Ce qu’ils disent de moi</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="card p-10 stagger" data-delay="0.1">
+                    <p class="italic text-xl text-gray-300 mb-8">"Olympe ne construit pas des startups. Il construit l’avenir de l’Afrique."</p>
+                    <p class="font-bold text-purple-400 text-lg">M. le Ministre du Numérique — Sénégal</p>
+                </div>
+                <div class="card p-10 stagger" data-delay="0.2">
+                    <p class="italic text-xl text-gray-300 mb-8">"Grâce à SynaptiGenix, nous avons formé 3000 médecins avec des données 100% sécurisées."</p>
+                    <p class="font-bold text-purple-400 text-lg">Dr. Amadou Traoré — Côte d’Ivoire</p>
+                </div>
+                <div class="card p-10 stagger" data-delay="0.3">
+                    <p class="italic text-xl text-gray-300 mb-8">"Lyx a permis à des milliers de jeunes Africains de passer de zéro à héros en 6 mois."</p>
+                    <p class="font-bold text-purple-400 text-lg">Fatou Diop — Rwanda</p>
+                </div>
             </div>
-            <div class="card p-10 stagger" data-delay="0.2">
-                <p class="italic text-xl text-gray-300 mb-8">"Grâce à SynaptiGenix, nous avons formé 3000 médecins avec des données 100% sécurisées."</p>
-                <p class="font-bold text-purple-400 text-lg">Dr. Amadou Traoré — Côte d’Ivoire</p>
-            </div>
-            <div class="card p-10 stagger" data-delay="0.3">
-                <p class="italic text-xl text-gray-300 mb-8">"Lyx a permis à des milliers de jeunes Africains de passer de zéro à héros en 6 mois."</p>
-                <p class="font-bold text-green-400 text-lg">Fatou Diop — Rwanda</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- RECRUTEMENT D'ÉLITE (tout en bas comme tu voulais) -->
-    <section class="py-40 text-center bg-black">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-6xl font-black mb-12 reveal">On recrute les 0,01 %</h2>
-            <p class="text-2xl text-gray-300 mb-12 reveal">
-                Si tu as déjà fait l’impossible,<br>
-                et que tu veux le refaire à l’échelle d’un continent…
-            </p>
-            <a href="mailto:join@wildene.io" class="btn-primary text-2xl px-16 py-6 reveal">
-                join@wildene.io
+        <!-- RECRUTEMENT -->
+        <section class="py-40 text-center">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="text-6xl font-black mb-12 reveal">On recrute les 0,01 %</h2>
+                <p class="text-2xl text-gray-300 mb-12 reveal">
+                    Si tu as déjà fait l’impossible,<br>
+                    et que tu veux le refaire à l’échelle d’un continent…
+                </p>
+                <a href="mailto:join@wildene.io" class="btn-primary text-2xl px-16 py-6 reveal">
+                    join@wildene.io
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="max-w-7xl mx-auto px-6 py-32 text-center">
+            <h2 class="text-5xl font-black mb-12 reveal">On discute ?</h2>
+            <a href="mailto:olympe@wildene.io" class="btn-primary text-2xl px-20 py-7 reveal">
+                olympe@wildene.io
             </a>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- CONTACT -->
-    <section id="contact" class="max-w-7xl mx-auto px-6 py-32 text-center">
-        <h2 class="text-5xl font-black mb-12 reveal">On discute ?</h2>
-        <a href="mailto:olympe@wildene.io" class="btn-primary text-2xl px-20 py-7 reveal">
-            olympe@wildene.io
-        </a>
-    </section>
-
-    <!-- FOOTER (noir pur) -->
+    <!-- FOOTER NOIR PUR -->
     <footer class="text-center py-20 border-t border-white/10 bg-black">
         <p class="text-gray-500">© 2025 Olympe Wildene • Tous droits réservés</p>
         <p class="text-gray-600 text-sm mt-4">Construit pour l’Afrique. Par l’Afrique. Avec l’Afrique.</p>
