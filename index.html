@@ -3,565 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio - Visionnaire Tech & Entrepreneur | Au-delà de Mars</title>
-    <!-- Chargement de Tailwind CSS pour un style rapide et moderne -->
+    <title>Olympe Wildene | Visionnaire Tech • SynaptiGenix • Lyx • Athena.OS</title>
+    <meta name="description" content="Fondateur de SynaptiGenix, Lyx, Athena.OS. Architecte de l’IA autonome et des écosystèmes décentralisés.">
+    <meta name="theme-color" content="#000000">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chargement de Font Awesome pour les icônes de réseaux sociaux -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0uXuW+Zhg+hzB9l/tP1on7/R0k4lG4L0vXQfFpW+f50+1/iV2b1mQ/fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* Définition de la police Inter pour une meilleure lisibilité */
+        :root {
+            --bg: #000;
+            --card: #0F0F0F;
+            --text: #FFFFFF;
+            --muted: #BBBBBB;
+            --line: #222222;
+            --accent: #00D4FF;
+        }
+        html, body { height: 100%; margin: 0; }
         body {
-            font-family: "Inter", sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-        /* Styles personnalisés pour les cartes de blog et projets pour un effet wow */
-        .project-card, .blog-post-card, .publication-card {
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+        .title { font-weight: 900; font-size: clamp(2.8rem, 8vw, 5.5rem); letter-spacing: -1.8px; line-height: 1.02; }
+        .subtitle { font-size: clamp(1.15rem, 4vw, 1.6rem); color: var(--muted); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.2,1,0.3,1); }
+        .reveal.show { opacity: 1; transform: none; }
+        .stagger { opacity: 0; transform: translateY(20px); transition: all 0.7s cubic-bezier(0.2,1,0.3,1); }
+        .stagger.show { opacity: 1; transform: none; }
+        .hover-lift { transition: transform 0.4s cubic-bezier(0.2,0.9,0.3,1); }
+        .hover-lift:hover { transform: translateY(-8px); }
+        .btn-primary {
+            background: white; color: black; padding: 0.8rem 1.8rem; border-radius: 999px;
+            font-weight: 800; display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.3s;
         }
-        .project-card:hover, .blog-post-card:hover, .publication-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        .btn-primary:hover { opacity: 0.9; transform: scale(1.03); }
+        .btn-ghost {
+            border: 1px solid var(--line); padding: 0.75rem 1.6rem; border-radius: 999px;
+            color: var(--muted); transition: all 0.3s;
         }
-        /* Animation pour les titres des sections */
-        .section-title {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Styles pour les animations au défilement */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Styles pour le bouton flottant */
-        .floating-cta {
-            position: fixed;
-            bottom: 1.5rem; /* Ajusté pour mobile */
-            right: 1.5rem; /* Ajusté pour mobile */
-            z-index: 1000;
-        }
-        @media (min-width: 640px) { /* sm breakpoint */
-            .floating-cta {
-                bottom: 2rem;
-                right: 2rem;
-            }
-        }
-
-        /* Styles pour le carrousel d'images du Hero */
-        #hero-background-carousel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: background-image 2s ease-in-out; /* Douce transition entre les images */
-            z-index: -1; /* Assure que le texte reste au-dessus */
-            filter: brightness(0.3); /* Assombrit davantage l'image pour un texte blanc ultra-lisible */
-        }
-
-        /* Styles pour le menu mobile (off-canvas) */
-        #mobile-menu {
-            transform: translateX(100%); /* Commence hors de l'écran */
-            transition: transform 0.3s ease-out;
-        }
-        #mobile-menu.open {
-            transform: translateX(0); /* Glisse en place */
+        .btn-ghost:hover { border-color: white; color: white; }
+        footer { border-top: 1px solid var(--line); padding: 2.5rem 1rem; }
+        @media (max-width: 640px) {
+            .hero { padding: 5rem 1rem; }
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 antialiased">
+<body class="antialiased">
 
-    <!-- Section de navigation -->
-    <nav class="bg-gray-900 shadow-lg py-4 px-4 sm:px-6 lg:px-8 rounded-b-xl sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Emplacement pour votre logo -->
-            <a href="#" class="rounded-md hover:opacity-80 transition duration-300 transform hover:scale-105">
-                <img src="https://placehold.co/150x40/0A0A0A/00FFFF?text=Votre+Logo" alt="Votre Logo" class="h-10 w-auto">
+    <!-- NAV -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-black/90 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 reveal">
+                <img src="images/olympe_logo.png" alt="Olympe Wildene" class="h-10">
+                <span class="font-black text-xl">Olympe<span class="text-gray-500">Wildene</span></span>
             </a>
 
-            <!-- Menu de navigation pour grand écran -->
-            <div class="hidden sm:flex space-x-4 items-center text-sm lg:text-base">
-                <a href="#about" class="text-gray-300 hover:text-cyan-400 font-medium px-3 py-2 rounded-md transition duration-300">À Propos</a>
-                <a href="#projects" class="text-gray-300 hover:text-cyan-400 font-medium px-3 py-2 rounded-md transition duration-300">Projets Clés</a>
-                <a href="#testimonials" class="text-gray-300 hover:text-cyan-400 font-medium px-3 py-2 rounded-md transition duration-300">Témoignages</a>
-                <a href="#publications" class="text-gray-300 hover:text-cyan-400 font-medium px-3 py-2 rounded-md transition duration-300">Publications</a>
-                <a href="#blog" class="text-gray-300 hover:text-cyan-400 font-medium px-3 py-2 rounded-md transition duration-300">Blog & Insights</a>
-                <a href="#contact" class="text-gray-300 hover:text-cyan-400 font-medium px-3 py-2 rounded-md transition duration-300">Contact</a>
-            </div>
+            <nav class="hidden md:flex items-center gap-10 text-gray-400 font-medium">
+                <a href="#competences" class="hover:text-white transition reveal" style="transition-delay:0.1s">Compétences</a>
+                <a href="#projets" class="hover:text-white transition reveal" style="transition-delay:0.2s">Projets</a>
+                <a href="#blog" class="hover:text-white transition reveal" style="transition-delay:0.3s">Blog</a>
+                <a href="#contact" class="btn-primary reveal" style="transition-delay:0.4s">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </nav>
 
-            <!-- Icône Hamburger pour mobile -->
-            <button id="hamburger-button" class="sm:hidden text-gray-300 hover:text-cyan-400 focus:outline-none text-2xl">
+            <button id="mobile-toggle" class="md:hidden text-2xl text-white">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-    </nav>
-
-    <!-- Menu Mobile (Off-Canvas Overlay) -->
-    <div id="mobile-menu" class="fixed inset-0 bg-gray-950 bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-8 text-2xl font-bold hidden">
-        <button id="close-mobile-menu" class="absolute top-6 right-6 text-gray-300 hover:text-red-500 focus:outline-none text-3xl">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#about" class="mobile-nav-link text-white hover:text-cyan-400 transition duration-300">À Propos</a>
-        <a href="#projects" class="mobile-nav-link text-white hover:text-cyan-400 transition duration-300">Projets Clés</a>
-        <a href="#testimonials" class="mobile-nav-link text-white hover:text-cyan-400 transition duration-300">Témoignages</a>
-        <a href="#publications" class="mobile-nav-link text-white hover:text-cyan-400 transition duration-300">Publications</a>
-        <a href="#blog" class="mobile-nav-link text-white hover:text-cyan-400 transition duration-300">Blog & Insights</a>
-        <a href="#contact" class="mobile-nav-link text-white hover:text-cyan-400 transition duration-300">Contact</a>
-    </div>
-
-    <!-- Section Hero (Accueil) - Impact Maximal avec carrousel d'images -->
-    <header class="relative text-white py-24 sm:py-32 rounded-b-3xl shadow-xl overflow-hidden min-h-[500px] flex items-center justify-center">
-        <div id="hero-background-carousel"></div> <!-- Conteneur pour le carrousel d'images -->
-        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-fadeInDown">
-            <div class="flex flex-col items-center">
-                <!-- Image de profil ou avatar -->
-                <img src="https://placehold.co/180x180/0A0A0A/00FFFF?text=Votre+Photo" alt="Votre photo de profil, futur.e leader de la tech" class="w-32 h-32 sm:w-44 sm:h-44 rounded-full border-4 sm:border-6 border-cyan-400 shadow-2xl mb-6 sm:mb-8 object-cover transform hover:scale-105 transition duration-300">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight drop-shadow-lg">Je suis Olympe Wildene, Catalyseur d'Innovation</h1>
-                <p id="hero-tagline" class="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-3xl font-light leading-relaxed">
-                    Visionnaire, entrepreneur.e et architecte de solutions qui redéfinissent les frontières. Mon ambition : aller au-delà de Mars.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 animate-on-scroll">
-                    <a href="#projects" class="bg-cyan-500 text-gray-900 hover:bg-cyan-400 px-8 py-3 sm:px-10 sm:py-4 rounded-full text-lg sm:text-xl font-bold shadow-xl transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center">
-                        Explorer mes Projets <i class="fas fa-arrow-right ml-3"></i>
-                    </a>
-                    <a href="#contact" class="bg-gray-700 text-white hover:bg-gray-600 px-8 py-3 sm:px-10 sm:py-4 rounded-full text-lg sm:text-xl font-bold shadow-xl transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center">
-                        Collaborer <i class="fas fa-handshake ml-3"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-
-        <!-- Section À Propos - Ma Vision & Expertise -->
-        <section id="about" class="mb-16 sm:mb-20 bg-white text-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl border-t-4 border-cyan-500 animate-on-scroll">
-            <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-8 sm:mb-12 pb-4 sm:pb-6 border-b-4 border-cyan-500">Ma Vision & Mon Parcours</h2>
-            <div class="flex flex-col md:flex-row items-center md:space-x-12">
-                <div class="md:w-1/3 mb-8 md:mb-0">
-                    <img src="https://placehold.co/500x400/0A0A0A/00FFFF?text=Innover+Ensemble" alt="Image illustrant l'innovation et la collaboration" class="rounded-xl shadow-xl w-full h-auto object-cover border-2 border-cyan-300">
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
-                        Avec plus de X années à la pointe de l'innovation technologique, j'ai fondé et dirigé des entreprises qui transforment leur secteur. Mon parcours est jalonné de succès dans la transformation numérique, le développement de produits révolutionnaires et la direction d'équipes performantes. Je suis animé.e par la conviction que la technologie a le pouvoir de résoudre les défis les plus complexes de notre époque, et ma vision s'étend bien au-delà des horizons actuels pour bâtir un futur sans précédent.
-                    </p>
-                    <p class="text-base sm:text-lg leading-relaxed">
-                        Je me spécialise dans le **développement de logiciels innovants**, l'architecture de systèmes complexes et la création d'expériences utilisateur exceptionnelles. Mon expertise s'étend de la stratégie produit à l'exécution technique, en passant par le financement et la mise sur le marché.
-                    </p>
-                    <div class="mt-8 sm:mt-10">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Compétences Clés & Technologies</h3>
-                        <div class="flex flex-wrap gap-3 sm:gap-4">
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-code mr-2"></i> Programmation & Développement</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-server mr-2"></i> Développement Backend (API, BDD)</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-laptop-code mr-2"></i> Développement Fullstack</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-brain mr-2"></i> Intelligence Artificielle</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-cubes mr-2"></i> Blockchain & Web3</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-cogs mr-2"></i> Product Management</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-cloud mr-2"></i> Cloud Computing (GCP/AWS/Azure)</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-lightbulb mr-2"></i> Stratégie d'Innovation</span>
-                            <span class="bg-gray-200 text-cyan-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-md hover:bg-gray-300 transition duration-300 transform hover:scale-105"><i class="fas fa-users mr-2"></i> Leadership d'Équipe</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Projets Clés - Mes Réalisations Disruptives -->
-        <section id="projects" class="mb-16 sm:mb-20 bg-white text-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl border-t-4 border-cyan-500 animate-on-scroll">
-            <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-8 sm:mb-12 pb-4 sm:pb-6 border-b-4 border-cyan-500">Mes Projets Clés & Réalisations</h2>
-            <p class="text-base sm:text-xl text-center text-gray-700 mb-8 sm:mb-12 max-w-3xl mx-auto">
-                Découvrez des solutions innovantes qui ont redéfini les standards et généré un impact significatif.
+    <!-- HERO -->
+    <section class="hero text-center py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="title reveal">Olympe Wildene</h1>
+            <p class="subtitle mt-6 reveal" style="transition-delay:0.2s">
+                Fondateur de <strong class="text-cyan-400">SynaptiGenix</strong>, <strong class="text-purple-400">Lyx</strong> & <strong class="text-green-400">Athena.OS</strong><br>
+                Architecte de l’IA autonome • Créateur d’écosystèmes décentralisés
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-
-                <!-- Carte de Projet LYX - Impact Maximisé -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Lyx+Innovation" alt="Image du projet Lyx" class="w-full h-48 sm:h-56 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">Lyx : Réinventer [Domaine de Lyx]</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            Lyx est une startup pionnière dans le domaine de [décrivez brièvement le domaine de Lyx, par exemple "la gestion intelligente des données" ou "les solutions de mobilité urbaine"]. Nous développons une plateforme disruptive qui [expliquez le problème résolu et l'innovation clé de Lyx, l'impact sur le marché, les utilisateurs ou l'industrie]. Mon rôle en tant que fondateur.e/CEO a été crucial dans la vision stratégique, le développement produit et l'acquisition de [chiffres clés, ex: "X utilisateurs" ou "Y millions de financements"].
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">SaaS</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">[Tech clé 1 de Lyx]</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">[Tech clé 2 de Lyx]</span>
-                        </div>
-                        <a href="https://lyx.com" target="_blank" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center justify-center">
-                            Visiter Lyx.com <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Carte de Projet SNAPTIGENIX - Impact Maximisé -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Snaptigenix+Innovation" alt="Image du projet Snaptigenix" class="w-full h-48 sm:h-56 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">Snaptigenix : Accélérer l'[Autre Domaine]</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            Snaptigenix est à l'avant-garde de [décrivez brièvement le domaine de Snaptigenix, par exemple "l'analyse génomique" ou "les solutions de cybersécurité basées sur l'IA"]. Notre technologie propriétaire permet de [expliquez le problème résolu et l'innovation clé de Snaptigenix, l'impact sur le marché, les utilisateurs ou l'industrie]. En tant que fondateur.e, j'ai orchestré la stratégie de R&D, l'obtention de brevets clés et la sécurisation de [chiffres clés, ex: "X partenariats stratégiques" ou "Y levées de fonds"].
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Deep Tech</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">[Tech clé 1 de Snaptigenix]</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">[Tech clé 2 de Snaptigenix]</span>
-                        </div>
-                        <a href="https://snaptigenix.com" target="_blank" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center justify-center">
-                            Découvrir Snaptigenix <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Carte de Projet 3 - Si vous avez un troisième projet clé autre que vos startups, ou un projet personnel impactant -->
-                <div class="project-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Innovation+Verte+3" alt="Image d'un autre projet ou innovation" class="w-full h-48 sm:h-56 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">Titre de l'Innovation Verte 3</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Décrivez ce troisième projet en mettant l'accent sur l'innovation, le problème résolu, et l'impact mesurable. Si vous n'avez que deux startups pour l'instant, vous pouvez soit supprimer cette carte, soit la laisser comme placeholder pour un futur projet ou un projet personnel majeur qui met en valeur une autre facette de votre expertise.].
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">IoT</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Smart Cities</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Développement Durable</span>
-                        </div>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center justify-center" target="_blank">
-                            En Savoir Plus <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Nouvelle Section Témoignages -->
-        <section id="testimonials" class="mb-16 sm:mb-20 bg-gray-900 text-gray-200 p-6 sm:p-10 rounded-xl shadow-2xl border-t-4 border-cyan-500 animate-on-scroll">
-            <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-white mb-8 sm:mb-12 pb-4 sm:pb-6 border-b-4 border-cyan-500">Ce qu'ils disent de moi</h2>
-            <p class="text-base sm:text-xl text-center text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto">
-                Des leaders de l'industrie partagent leurs expériences de collaboration.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-                <!-- Témoignage 1 -->
-                <div class="bg-gray-800 text-white p-6 sm:p-8 rounded-lg shadow-lg flex flex-col justify-between">
-                    <p class="text-base sm:text-lg italic mb-4 sm:mb-6">" [Votre Nom] est un.e véritable visionnaire. Son leadership chez Lyx a transformé notre approche du marché et ses solutions sont d'une ingéniosité rare. Une collaboration inspirante et des résultats concrets."</p>
-                    <div>
-                        <p class="font-bold text-lg sm:text-xl text-cyan-300">- [Nom du Référent 1]</p>
-                        <p class="text-xs sm:text-sm text-gray-400">[Titre du Référent 1], [Entreprise 1]</p>
-                    </div>
-                </div>
-                <!-- Témoignage 2 -->
-                <div class="bg-gray-800 text-white p-6 sm:p-8 rounded-lg shadow-lg flex flex-col justify-between">
-                    <p class="text-base sm:text-lg italic mb-4 sm:mb-6">"L'expertise technique et la capacité à innover de [Votre Nom] chez Snaptigenix sont sans précédent. Il/Elle a su nous guider vers des solutions de pointe qui ont dépassé toutes nos attentes. Un.e partenaire inestimable."</p>
-                    <div>
-                        <p class="font-bold text-lg sm:text-xl text-cyan-300">- [Nom du Référent 2]</p>
-                        <p class="text-xs sm:text-sm text-gray-400">[Titre du Référent 2], [Entreprise 2]</p>
-                    </div>
-                </div>
-                <!-- Témoignage 3 -->
-                <div class="bg-gray-800 text-white p-6 sm:p-8 rounded-lg shadow-lg flex flex-col justify-between">
-                    <p class="text-base sm:text-lg italic mb-4 sm:mb-6">"Sa compréhension profonde des défis technologiques et son approche stratégique font de [Votre Nom] un.e leader incontournable. Une source d'inspiration pour l'ensemble de la communauté tech."</p>
-                    <div>
-                        <p class="font-bold text-lg sm:text-xl text-cyan-300">- [Nom du Référent 3]</p>
-                        <p class="text-xs sm:text-sm text-gray-400">[Titre du Référent 3], [Entreprise 3]</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Nouvelle Section Publications & Conférences -->
-        <section id="publications" class="mb-16 sm:mb-20 bg-white text-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl border-t-4 border-cyan-500 animate-on-scroll">
-            <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-8 sm:mb-12 pb-4 sm:pb-6 border-b-4 border-cyan-500">Publications & Conférences</h2>
-            <p class="text-base sm:text-xl text-center text-gray-700 mb-8 sm:mb-12 max-w-3xl mx-auto">
-                Partager mes connaissances et ma vision pour l'avenir de la technologie.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-
-                <!-- Publication / Conférence 1 -->
-                <div class="publication-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Publication+1" alt="Image de la publication 1" class="w-full h-48 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Titre de l'Article / Conférence 1</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Décrivez brièvement le sujet et l'impact de votre publication ou conférence. Par exemple : "Article sur l'impact de l'IA dans la FinTech, publié dans 'Tech Innovations Journal'. Présenté à la conférence 'Global Tech Summit'."]
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">IA</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">FinTech</span>
-                        </div>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center" target="_blank">
-                            Voir la Ressource <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Publication / Conférence 2 -->
-                <div class="publication-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Conf%C3%A9rence+2" alt="Image de la conférence 2" class="w-full h-48 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Titre de l'Article / Conférence 2</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Décrivez brièvement le sujet et l'impact de votre publication ou conférence. Par exemple : "Keynote sur le futur du Web3 et la décentralisation, délivrée au 'Blockchain Leaders Forum'."]
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Web3</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Blockchain</span>
-                        </div>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center" target="_blank">
-                            Voir la Ressource <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Publication / Conférence 3 -->
-                <div class="publication-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Distinction+3" alt="Image de la distinction 3" class="w-full h-48 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Titre de l'Article / Conférence 3</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Décrivez brièvement le sujet et l'impact de votre publication ou conférence. Par exemple : "Publication de recherche sur les architectures cloud scalables pour les startups, récompensée par 'Tech Journal Award'."]
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Cloud Computing</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs sm:text-sm font-medium px-3 py-1 sm:px-4 sm:py-2 rounded-full">Scalabilité</span>
-                        </div>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center" target="_blank">
-                            Voir la Ressource <i class="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="text-center mt-8 sm:mt-12 animate-on-scroll">
-                <a href="#" class="bg-cyan-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-bold shadow-lg hover:bg-cyan-700 transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center max-w-xs mx-auto">
-                    Voir Toutes mes Contributions <i class="fas fa-book-open ml-3"></i>
+            <div class="mt-12 flex flex-col sm:flex-row gap-5 justify-center reveal" style="transition-delay:0.4s">
+                <a href="https://synaptigenix.com" target="_blank" class="btn-primary text-lg px-10 py-5">
+                    <i class="fas fa-brain"></i> SynaptiGenix
                 </a>
-            </div>
-        </section>
-
-        <!-- Section Mon Blog & Insights - Leadership d'Opinion -->
-        <section id="blog" class="mb-16 sm:mb-20 bg-white text-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl border-t-4 border-cyan-500 animate-on-scroll">
-            <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-8 sm:mb-12 pb-4 sm:pb-6 border-b-4 border-cyan-500">Mon Blog & Insights</h2>
-            <p class="text-base sm:text-xl text-center text-gray-700 mb-8 sm:mb-12 max-w-3xl mx-auto">
-                Découvrez mes réflexions sur les tendances technologiques, l'innovation et le futur du numérique.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-
-                <!-- Article de Blog 1 -->
-                <div class="blog-post-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Article+Blog+1" alt="Image de l'article de blog 1" class="w-full h-48 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">L'Ère de l'IA Générative : Opportunités et Défis</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Extrait de l'article : "L'IA générative est en train de remodeler tous les secteurs. Explorons comment les entreprises peuvent l'exploiter pour l'innovation, tout en naviguant ses implications éthiques..."].
-                        </p>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center" target="_blank">
-                            Lire la suite <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Article de Blog 2 -->
-                <div class="blog-post-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Article+Blog+2" alt="Image de l'article de blog 2" class="w-full h-48 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Dépasser le Buzz : La Vraie Valeur du Web3</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Extrait de l'article : "Au-delà des spéculations, le Web3 offre des paradigmes de propriété et de gouvernance inédits. Analysons ses applications concrètes pour les entreprises et les créateurs..."].
-                        </p>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center" target="_blank">
-                            Lire la suite <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Article de Blog 3 -->
-                <div class="blog-post-card bg-gray-50 rounded-xl overflow-hidden animate-on-scroll">
-                    <img src="https://placehold.co/700x450/0A0A0A/00FFFF?text=Article+Blog+3" alt="Image de l'article de blog 3" class="w-full h-48 object-cover border-b-2 border-cyan-500">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Innover Responsable : Éthique et Tech</h3>
-                        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
-                            [Extrait de l'article : "L'innovation rapide exige une réflexion éthique profonde. Comment pouvons-nous construire des technologies qui servent l'humanité de manière durable et équitable ?" ].
-                        </p>
-                        <a href="#" class="inline-block bg-cyan-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-md font-semibold hover:bg-cyan-700 transition duration-300 flex items-center" target="_blank">
-                            Lire la suite <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Ajoutez d'autres articles de blog ici si vous en avez plus -->
-
-            </div>
-            <div class="text-center mt-8 sm:mt-12 animate-on-scroll">
-                <a href="#" class="bg-cyan-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-bold shadow-lg hover:bg-cyan-700 transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center max-w-xs mx-auto">
-                    Voir Tous les Articles <i class="fas fa-newspaper ml-3"></i>
-                </a>
-            </div>
-        </section>
-
-        <!-- Section Contact - Connexion et Opportunités -->
-        <section id="contact" class="mb-16 sm:mb-20 bg-white text-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl border-t-4 border-amber-500 animate-on-scroll">
-            <h2 class="section-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-8 sm:mb-12 pb-4 sm:pb-6 border-b-4 border-amber-500">Connectons-nous !</h2>
-            <div class="max-w-xl mx-auto text-center">
-                <p class="text-base sm:text-xl text-gray-700 mb-8 sm:mb-10 leading-relaxed">
-                    Vous avez une idée audacieuse, un projet qui va changer le monde ou vous souhaitez discuter d'opportunités d'investissement ? Je suis toujours ouvert.e aux collaborations qui repoussent les limites.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 animate-on-scroll">
-                    <a href="mailto:votre.email@exemple.com" class="bg-blue-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:bg-blue-800 transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center">
-                        <i class="fas fa-envelope mr-3"></i> Envoyer un e-mail
-                    </a>
-                    <a href="https://linkedin.com/in/votrenom" target="_blank" class="bg-blue-800 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:bg-blue-900 transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center">
-                        <i class="fab fa-linkedin mr-3"></i> Mon LinkedIn
-                    </a>
-                </div>
-                <p class="text-sm sm:text-lg text-gray-600 mt-8 sm:mt-10 animate-on-scroll">
-                    Découvrez également mes contributions sur :
-                </p>
-                <div class="flex flex-wrap justify-center space-x-4 sm:space-x-6 mt-6 text-2xl sm:text-3xl">
-                    <a href="https://github.com/votregithub" target="_blank" class="text-gray-700 hover:text-gray-900 transform hover:scale-110 transition duration-300" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://twitter.com/votretwitter" target="_blank" class="text-sky-400 hover:text-sky-300 transform hover:scale-110 transition duration-300" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                    <a href="https://medium.com/@votrenom" target="_blank" class="text-gray-700 hover:text-gray-900 transform hover:scale-110 transition duration-300" aria-label="Medium"><i class="fab fa-medium"></i></a>
-                    <a href="https://facebook.com/votrepage" target="_blank" class="text-blue-600 hover:text-blue-500 transform hover:scale-110 transition duration-300" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/votrenom" target="_blank" class="text-fuchsia-500 hover:text-fuchsia-400 transform hover:scale-110 transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@votrenom" target="_blank" class="text-black hover:text-gray-700 transform hover:scale-110 transition duration-300" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://discord.gg/votreinvitation" target="_blank" class="text-indigo-500 hover:text-indigo-400 transform hover:scale-110 transition duration-300" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Bouton d'action flottant -->
-    <div class="floating-cta animate-on-scroll">
-        <a href="#contact" class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full text-base sm:text-lg font-bold shadow-xl hover:from-red-700 hover:to-orange-700 transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center">
-            <i class="fas fa-comment-dots mr-2"></i> Contactez-moi !
-        </a>
-    </div>
-
-    <!-- Pied de page -->
-    <footer class="bg-gray-950 text-white py-8 sm:py-10 mt-16 sm:mt-20 rounded-t-3xl shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-sm sm:text-lg mb-4">&copy; 2025 [Votre Nom]. Propulser l'avenir, une innovation à la fois.</p>
-            <div class="flex justify-center space-x-6 sm:space-x-8 mt-4 sm:mt-6 text-xl sm:text-2xl">
-                <a href="https://linkedin.com/in/votrenom" target="_blank" class="text-gray-400 hover:text-blue-400 transition duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/votregithub" target="_blank" class="text-gray-400 hover:text-white transition duration-300" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/votretwitter" target="_blank" class="text-gray-400 hover:text-sky-400 transition duration-300" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                <a href="https://medium.com/@votrenom" target="_blank" class="text-gray-400 hover:text-pink-500 transition duration-300" aria-label="Medium"><i class="fab fa-medium"></i></a>
-                <a href="https://facebook.com/votrepage" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://instagram.com/votrenom" target="_blank" class="text-gray-400 hover:text-black transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://tiktok.com/@votrenom" target="_blank" class="text-gray-400 hover:text-indigo-500 transition duration-300" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://discord.gg/votreinvitation" target="_blank" class="text-gray-400 hover:text-indigo-500 transition duration-300" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                <a href="#projets" class="btn-ghost text-lg px-10 py-5">Tous mes projets</a>
             </div>
         </div>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section id="competences" class="max-w-7xl mx-auto px-6 py-20">
+        <h2 class="text-4xl font-black text-center mb-16 reveal">Domaines de Maîtrise</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal" style="transition-delay:0.2s">
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.1">
+                <i class="fas fa-brain text-4xl text-cyan-400 mb-4"></i>
+                <p class="font-bold">IA Générative</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.2">
+                <i class="fas fa-cubes text-4xl text-purple-400 mb-4"></i>
+                <p class="font-bold">Web3 & Blockchain</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.3">
+                <i class="fas fa-shield-alt text-4xl text-green-400 mb-4"></i>
+                <p class="font-bold">Cybersécurité</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.4">
+                <i class="fas fa-cloud text-4xl text-blue-400 mb-4"></i>
+                <p class="font-bold">Cloud & Scalabilité</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.5">
+                <i class="fas fa-code text-4xl text-pink-400 mb-4"></i>
+                <p class="font-bold">Fullstack Dev</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.6">
+                <i class="fas fa-users-cog text-4xl text-yellow-400 mb-4"></i>
+                <p class="font-bold">Product Strategy</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.7">
+                <i class="fas fa-chart-line text-4xl text-red-400 mb-4"></i>
+                <p class="font-bold">Growth & Fundraising</p>
+            </div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.8">
+                <i class="fas fa-globe text-4xl text-indigo-400 mb-4"></i>
+                <p class="font-bold">Open Source</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="max-w-7xl mx-auto px-6 py-20 bg-white/5">
+        <h2 class="text-4xl font-black text-center mb-16 reveal">Projets & Écosystèmes</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="card p-8 hover-lift stagger" data-delay="0.1">
+                <div class="bg-gradient-to-br from-cyan-500 to-blue-700 h-52 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-bold mb-3">SynaptiGenix</h3>
+                <p class="text-gray-400 mb-4">Plateforme de données synthétiques autonomes avec Jarris (validation) et Orphée (multi-modal). Utilisée en santé, autonomie, media.</p>
+                <a href="https://synaptigenix.com" target="_blank" class="text-cyan-400 font-bold">synaptigenix.com →</a>
+            </div>
+
+            <div class="card p-8 hover-lift stagger" data-delay="0.2">
+                <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-52 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-bold mb-3">Lyx Developer Community</h3>
+                <p class="text-gray-400 mb-4">+25 000 développeurs. Écosystème open-source autour de l’IA créative, outils no-code/low-code, templates et formations.</p>
+                <a href="https://lyx.dev" target="_blank" class="text-purple-400 font-bold">lyx.dev →</a>
+            </div>
+
+            <div class="card p-8 hover-lift stagger" data-delay="0.3">
+                <div class="bg-gradient-to-br from-green-500 to-emerald-700 h-52 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-bold mb-3">Athena.OS</h3>
+                <p class="text-gray-400 mb-4">Système d’exploitation décentralisé pour l’IA souveraine. Privacy-first, edge computing, blockchain-integrated.</p>
+                <a href="#" class="text-green-400 font-bold">En cours de lancement →</a>
+            </div>
+
+            <div class="card p-8 hover-lift stagger" data-delay="0.4">
+                <div class="bg-gradient-to-br from-orange-500 to-red-600 h-52 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-bold mb-3">NeuraForge</h3>
+                <p class="text-gray-400 mb-4">Framework open-source pour entraîner des modèles 100x plus vite avec données synthétiques.</p>
+                <a href="https://github.com/neuraforge" target="_blank" class="text-orange-400 font-bold">GitHub →</a>
+            </div>
+
+            <div class="card p-8 hover-lift stagger" data-delay="0.5">
+                <div class="bg-gradient-to-br from-indigo-500 to-purple-700 h-52 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-bold mb-3">QuantumSafe Labs</h3>
+                <p class="text-gray-400 mb-4">Recherche en cryptographie post-quantique et protocoles zero-knowledge.</p>
+                <a href="#" class="text-indigo-400 font-bold">En stealth →</a>
+            </div>
+
+            <div class="card p-8 hover-lift stagger" data-delay="0.6">
+                <div class="bg-gradient-to-br from-teal-500 to-cyan-700 h-52 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-bold mb-3">Wildene Ventures</h3>
+                <p class="text-gray-400 mb-4">Fonds d’investissement early-stage dans l’IA souveraine et les infrastructures décentralisées.</p>
+                <a href="#" class="text-teal-400 font-bold">Portfolio privé</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG & INSIGHTS -->
+    <section id="blog" class="max-w-7xl mx-auto px-6 py-20">
+        <h2 class="text-4xl font-black text-center mb-16 reveal">Blog & Insights</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="card p-8 hover-lift stagger" data-delay="0.1">
+                <h3 class="text-xl font-bold mb-4">Pourquoi les données synthétiques vont remplacer 90 % des datasets réels d’ici 2030</h3>
+                <p class="text-gray-400 text-sm">23 novembre 2025</p>
+            </div>
+            <div class="card p-8 hover-lift stagger" data-delay="0.2">
+                <h3 class="text-xl font-bold mb-4">Athena.OS : vers un OS décentralisé pour l’IA souveraine</h3>
+                <p class="text-gray-400 text-sm">15 octobre 2025</p>
+            </div>
+            <div class="card p-8 hover-lift stagger" data-delay="0.3">
+                <h3 class="text-xl font-bold mb-4">Jarris : comment valider un dataset comme on audite un smart contract</h3>
+                <p class="text-gray-400 text-sm">8 septembre 2025</p>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="#" class="btn-ghost text-lg px-10 py-4">Voir tout le blog →</a>
+        </div>
+    </section>
+
+    <!-- TÉMOIGNAGES -->
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-white/5">
+        <h2 class="text-4xl font-black text-center mb-16 reveal">Ils parlent de moi</h2>
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="card p-8 stagger" data-delay="0.1">
+                <p class="italic text-gray-300 mb-6">"Olympe a une vision 10 ans en avance. SynaptiGenix est déjà incontournable dans nos pipelines R&D."</p>
+                <p class="font-bold text-cyan-400">Dr. Léa Moreau</p>
+                <p class="text-sm text-gray-500">Directrice IA – Institut Pasteur</p>
+            </div>
+            <div class="card p-8 stagger" data-delay="0.2">
+                <p class="italic text-gray-300 mb-6">"Avec Athena.OS, il redéfinit ce que signifie 'souveraineté numérique'. Un game-changer."</p>
+                <p class="font-bold text-purple-400">Marc Langenstein</p>
+                <p class="text-sm text-gray-500">CTO – Ministère de la Défense</p>
+            </div>
+            <div class="card p-8 stagger" data-delay="0.3">
+                <p class="italic text-gray-300 mb-6">"Lyx est devenu l’outil numéro 1 de nos 3000 développeurs internes."</p>
+                <p class="font-bold text-green-400">Sarah Benali</p>
+                <p class="text-sm text-gray-500">VP Engineering – Capgemini</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 py-32 text-center">
+        <h2 class="text-5xl font-black mb-10 reveal">Prêt à construire le futur ?</h2>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 reveal" style="transition-delay:0.2s">
+            Investisseurs, partenaires tech, talents exceptionnels : je suis toujours ouvert aux projets qui changent le monde.
+        </p>
+        <div class="reveal" style="transition-delay:0.4s">
+            <a href="mailto:olympe@wildene.io" class="btn-primary text-2xl px-16 py-6">
+                <i class="fas fa-paper-plane"></i> olympe@wildene.io
+            </a>
+        </div>
+        <div class="mt-16 flex justify-center gap-10 text-4xl text-gray-600">
+            <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-github"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-discord"></i></a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-16 border-t border-white/10">
+        <p class="text-gray-500 text-sm">© 2025 Olympe Wildene. Tous droits réservés.</p>
+        <p class="text-gray-600 text-xs mt-4">Construit avec passion, zéro bullshit.</p>
     </footer>
 
     <script>
-        // JavaScript pour les animations au défilement (Intersection Observer)
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1 // L'élément doit être visible à 10% pour déclencher l'animation
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        // Optional: stop observing once it's visible if the animation is a one-shot
-                        // observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observez toutes les sections et les cartes de projet/blog pour l'animation
-            document.querySelectorAll('.animate-on-scroll').forEach(element => {
-                observer.observe(element);
-            });
-        });
-
-        // JavaScript pour l'effet "machine à écrire" sur le slogan du hero
-        document.addEventListener('DOMContentLoaded', () => {
-            const typeWriterElement = document.getElementById('hero-tagline');
-            if (typeWriterElement) {
-                const text = typeWriterElement.textContent;
-                typeWriterElement.textContent = ''; // Efface le contenu initial
-                let i = 0;
-                const speed = 40; // Vitesse de frappe en ms
-
-                function typeWriter() {
-                    if (i < text.length) {
-                        typeWriterElement.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, speed);
+        // Reveal + stagger
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('show');
+                    if (e.target.classList.contains('stagger')) {
+                        const delay = e.target.dataset.delay || 0;
+                        e.target.style.transitionDelay = delay + 's';
                     }
                 }
-                typeWriter(); // Déclenche l'effet
-            }
-        });
-
-       // JavaScript pour le carrousel d'images de fond du Hero
-        document.addEventListener('DOMContentLoaded', () => {
-            const carouselElement = document.getElementById('hero-background-carousel');
-            if (carouselElement) {
-                const images = [
-                    'https://images.unsplash.com/photo-1677357623576-7c8aab08da22?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000', // Image 1
-                    'https://thumbs.dreamstime.com/b/salle-de-commande-dans-l-engin-spatial-int%C3%A9rieur-du-vaisseau-ou-la-station-spatiale-futuriste-avec-terminaux-et-%C3%A9crans-d-274353213.jpg', // Image 2
-                    'https://img.freepik.com/premium-photo/user-interacting-with-3d-holographic-display-using-hand-gestures_1327465-4680.jpg',
-                    'https://thumbs.dreamstime.com/b/settled-alien-landscape-imaginary-where-humans-have-66141204.jpg',
-                ];
-                let currentIndex = 0;
-
-                function changeBackgroundImage() {
-                    carouselElement.style.backgroundImage = `url('${images[currentIndex]}')`;
-                    currentIndex = (currentIndex + 1) % images.length;
-                }
-
-                changeBackgroundImage();
-                setInterval(changeBackgroundImage, 8000);
-            }
-        });
-
-        // JavaScript pour le menu hamburger
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburgerButton = document.getElementById('hamburger-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-            function toggleMobileMenu() {
-                mobileMenu.classList.toggle('hidden'); // Gère la visibilité
-                mobileMenu.classList.toggle('open');    // Gère la transformation (animation)
-            }
-
-            hamburgerButton.addEventListener('click', toggleMobileMenu);
-            closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
-
-            // Ferme le menu lorsque l'on clique sur un lien de navigation
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mobileMenu.classList.contains('open')) {
-                        toggleMobileMenu();
-                    }
-                });
             });
-        });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
