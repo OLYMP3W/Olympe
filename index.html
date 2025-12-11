@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olympe Wildene | Visionnaire Tech • SynaptiGenix • Lyx • Athena.OS</title>
-    <meta name="description" content="Fondateur de SynaptiGenix, Lyx, Athena.OS. Architecte de l’IA souveraine et du futur technologique africain.">
+    <meta name="description" content="Fondateur de SynaptiGenix, Lyx Developer Community, Athena.OS. Architecte de l’IA souveraine et du futur technologique africain.">
     <meta name="theme-color" content="#000000">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -20,9 +20,9 @@
             --purple: #8A2BE2;
         }
         *, *::before, *::after { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; }
+        html, body { margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: #000;
             color: var(--text);
             line-height: 1.6;
@@ -38,7 +38,7 @@
         .purple-gradient-start::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            inset: 0;
             background: linear-gradient(to bottom, transparent 0%, rgba(138, 43, 226, 0.08) 30%, rgba(138, 43, 226, 0.25) 100%);
             pointer-events: none;
             z-index: -1;
@@ -52,69 +52,64 @@
         }
         .title {
             font-weight: 900;
-            font-size: clamp(2.8rem, 8vw, 6rem);
+            font-size: clamp(2.4rem, 7.5vw, 5.5rem);
             letter-spacing: -2px;
-            line-height: 1.02;
-        }
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.2,1,0.3,1), transform 1s cubic-bezier(0.2,1,0.3,1);
-        }
-        .reveal.show { opacity: 1; transform: none; }
-        .stagger {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.9s cubic-bezier(0.2,1,0.3,1), transform 0.9s cubic-bezier(0.2,1,0.3,1);
-        }
-        .stagger.show { opacity: 1; transform: none; }
-        .hover-lift {
-            transition: transform 0.4s cubic-bezier(0.2,0.9,0.3,1);
-        }
-        .hover-lift:hover {
-            transform: translateY(-10px);
-        }
-        .btn-primary {
-            background: white;
-            color: black;
-            padding: 1rem 2.4rem;
-            border-radius: 999px;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: all 0.3s;
-        }
-        .btn-primary:hover {
-            opacity: 0.92;
-            transform: scale(1.04);
-        }
-        .btn-ghost {
-            border: 1px solid var(--line);
-            padding: 0.9rem 2rem;
-            border-radius: 999px;
-            color: var(--muted);
-            transition: all 0.3s;
-        }
-        .btn-ghost:hover {
-            border-color: white;
-            color: white;
-        }
-        footer {
-            background: #000 !important;
-            border-top: 1px solid var(--line);
-            padding: 4rem 1rem;
+            line-height: 1.05;
         }
 
-        /* Responsive parfait */
-        @media (max-width: 640px) {
-            .grid-cols-2 { grid-template-columns: 1fr !important; }
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.2,1,0.3,1), transform 1s cubic-bezier(0.2,1,0.3,1); }
+        .reveal.show { opacity: 1; transform: none; }
+        .stagger { opacity: 0; transform: translateY(30px); transition: opacity 0.9s cubic-bezier(0.2,1,0.3,1), transform 0.9s cubic-bezier(0.2,1,0.3,1); }
+        .stagger.show { opacity: 1; transform: none; }
+        .hover-lift { transition: transform 0.4s cubic-bezier(0.2,0.9,0.3,1); }
+        .hover-lift:hover { transform: translateY(-10px); }
+
+        /* Boutons */
+        .btn-primary {
+            background: white; color: black; padding: 0.9rem 2rem; border-radius: 999px;
+            font-weight: 800; display: inline-flex; align-items: center; gap: 0.6rem;
+            transition: all 0.3s; font-size: clamp(1rem, 2.5vw, 1.25rem);
+        }
+        .btn-primary:hover { opacity: 0.92; transform: scale(1.04); }
+        .btn-ghost {
+            border: 1px solid var(--line); padding: 0.8rem 1.8rem; border-radius: 999px;
+            color: var(--muted); transition: all 0.3s; font-size: clamp(1rem, 2.5vw, 1.25rem);
+        }
+        .btn-ghost:hover { border-color: white; color: white; }
+
+        /* Footer noir pur */
+        footer { background: #000 !important; border-top: 1px solid var(--line); padding: 3rem 1rem; }
+
+        /* RESPONSIVE ULTRA-PRÉCIS */
+        @media (max-width: 1280px) {
+            .lg\\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
             .md\\:grid-cols-3,
-            .lg\\:grid-cols-3,
-            .md\\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-            .hero { padding: 7rem 1rem 5rem; }
-            .text-6xl { font-size: 3.5rem !important; }
-            .text-5xl { font-size: 2.8rem !important; }
+            .md\\:grid-cols-4 { grid-template-columns: 1fr 1fr; }
+            .text-7xl { font-size: 4rem !important; }
+            .text-6xl { font-size: 3.2rem !important; }
+            .text-5xl { font-size: 2.5rem !important; }
+            .py-48 { padding: 6rem 0 !important; }
+            .py-40 { padding: 5rem 0 !important; }
+            .py-32 { padding: 4rem 0 !important; }
+        }
+        @media (max-width: 640px) {
+            .grid-cols-2,
+            .md\\:grid-cols-3,
+            .md\\:grid-cols-4,
+            .lg\\:grid-cols-3 { grid-template-columns: 1fr !important; }
+            .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .gap-12, .gap-8 { gap: 2rem !important; }
+            .py-24 { padding: 3rem 0 !important; }
+            .text-7xl { font-size: 3.5rem !important; line-height: 1.1 !important; }
+            .text-6xl { font-size: 2.8rem !important; }
+            .btn-primary, .btn-ghost { padding: 0.8rem 1.6rem; width: 100%; justify-content: center; }
+        }
+        @media (max-width: 380px) {
+            .text-6xl { font-size: 2.5rem !important; }
+            .text-5xl { font-size: 2.2rem !important; }
         }
     </style>
 </head>
@@ -122,12 +117,12 @@
 
     <!-- NAV -->
     <header class="sticky top-0 z-50 backdrop-blur-xl bg-black/95 border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-4 reveal">
-                <img src="images/olympe_logo.png" alt="Olympe Wildene" class="h-10 md:h-12">
-                <span class="font-black text-xl md:text-2xl">Olympe<span class="text-gray-500">Wildene</span></span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 reveal">
+                <img src="images/olympe_logo.png" alt="Olympe Wildene" class="h-9 sm:h-11">
+                <span class="font-black text-lg sm:text-xl">Olympe<span class="text-gray-500">Wildene</span></span>
             </a>
-            <nav class="hidden md:flex items-center gap-10 lg:gap-14 text-gray-400 font-medium text-sm lg:text-base">
+            <nav class="hidden md:flex items-center gap-6 lg:gap-10 text-gray-400 text-sm lg:text-base">
                 <a href="#competences" class="hover:text-white transition">Compétences</a>
                 <a href="#projets" class="hover:text-white transition">Projets</a>
                 <a href="#vision" class="hover:text-white transition">Vision</a>
@@ -139,71 +134,75 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero text-center py-40 px-6">
-        <div class="max-w-6xl mx-auto">
+    <section class="text-center py-32 sm:py-40 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto">
             <h1 class="title reveal">Olympe Wildene</h1>
-            <p class="text-2xl md:text-4xl mt-8 text-gray-300 reveal" style="transition-delay:0.3s">
-                Fondateur de <span class="text-cyan-400 font-black">SynaptiGenix</span>, <span class="text-purple-400 font-black">Lyx</span> & <span class="text-green-400 font-black">Athena.OS</span>
+            <p class="text-2xl sm:text-3xl md:text-4xl mt-6 sm:mt-8 text-gray-300 reveal" style="transition-delay:0.3s">
+                Fondateur de <span class="text-cyan-400 font-black">SynaptiGenix</span>, <span class="text-purple-400 font-black">Lyx Developer Community</span> & <span class="text-green-400 font-black">Athena.OS</span>
             </p>
-            <p class="text-xl md:text-2xl mt-6 text-gray-400 reveal" style="transition-delay:0.5s">
+            <p class="text-lg sm:text-xl md:text-2xl mt-4 sm:mt-6 text-gray-400 reveal" style="transition-delay:0.5s">
                 Architecte de l’IA souveraine • Bâtisseur du futur technologique africain & mondial
             </p>
-            <div class="mt-16 flex flex-col sm:flex-row gap-6 justify-center reveal" style="transition-delay:0.7s">
-                <a href="https://synaptigenix.com" target="_blank" class="btn-primary text-xl px-12 py-5">SynaptiGenix</a>
-                <a href="#projets" class="btn-ghost text-xl px-12 py-5">Tous mes projets</a>
+            <div class="mt-10 sm:mt-16 flex flex-col sm:flex-row gap-4 justify-center reveal" style="transition-delay:0.7s">
+                <a href="https://synapti-genix.vercel.app/" target="_blank" class="btn-primary px-8 sm:px-12 py-4 sm:py-5">SynaptiGenix</a>
+                <a href="#projets" class="btn-ghost px-8 sm:px-12 py-4 sm:py-5">Tous mes projets</a>
             </div>
         </div>
     </section>
 
     <!-- COMPÉTENCES -->
-    <section id="competences" class="max-w-7xl mx-auto px-6 py-24">
-        <h2 class="text-5xl font-black text-center mb-20 reveal">Domaines de maîtrise absolue</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 reveal">
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.1"><i class="fas fa-brain text-5xl text-cyan-400 mb-4"></i><p class="font-bold text-lg">IA Générative</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.2"><i class="fas fa-cubes text-5xl text-purple-400 mb-4"></i><p class="font-bold text-lg">Web3 & Blockchain</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.3"><i class="fas fa-shield-alt text-5xl text-green-400 mb-4"></i><p class="font-bold text-lg">Cybersécurité</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.4"><i class="fas fa-microchip text-5xl text-yellow-400 mb-4"></i><p class="font-bold text-lg">Edge & Hardware</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.5"><i class="fas fa-code text-5xl text-pink-400 mb-4"></i><p class="font-bold text-lg">Fullstack</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.6"><i class="fas fa-users-cog text-5xl text-indigo-400 mb-4"></i><p class="font-bold text-lg">Product Strategy</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.7"><i class="fas fa-globe-africa text-5xl text-orange-400 mb-4"></i><p class="font-bold text-lg">Souveraineté Afrique</p></div>
-            <div class="card p-8 text-center hover-lift stagger" data-delay="0.8"><i class="fas fa-rocket text-5xl text-red-400 mb-4"></i><p class="font-bold text-lg">Fundraising</p></div>
+    <section id="competences" class="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
+        <h2 class="text-4xl sm:text-5xl font-black text-center mb-12 sm:mb-20 reveal">Domaines de maîtrise absolue</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.1"><i class="fas fa-brain text-4xl sm:text-5xl text-cyan-400 mb-3"></i><p class="font-bold text-base sm:text-lg">IA Générative</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.2"><i class="fas fa-cubes text-4xl sm:text-5xl text-purple-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Web3 & Blockchain</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.3"><i class="fas fa-shield-alt text-4xl sm:text-5xl text-green-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Cybersécurité</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.4"><i class="fas fa-microchip text-4xl sm:text-5xl text-yellow-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Edge & Hardware</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.5"><i class="fas fa-code text-4xl sm:text-5xl text-pink-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Fullstack</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.6"><i class="fas fa-users-cog text-4xl sm:text-5xl text-indigo-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Product Strategy</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.7"><i class="fas fa-globe-africa text-4xl sm:text-5xl text-orange-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Souveraineté Afrique</p></div>
+            <div class="card p-6 text-center hover-lift stagger" data-delay="0.8"><i class="fas fa-rocket text-4xl sm:text-5xl text-red-400 mb-3"></i><p class="font-bold text-base sm:text-lg">Fundraising</p></div>
         </div>
     </section>
 
     <!-- PROJETS -->
-    <section id="projets" class="max-w-7xl mx-auto px-6 py-24 bg-white/5">
-        <h2 class="text-5xl font-black text-center mb-20 reveal">Projets & Écosystèmes</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-            <div class="card p-10 hover-lift stagger" data-delay="0.1">
-                <div class="bg-gradient-to-br from-cyan-500 to-blue-700 h-56 rounded-2xl mb-6"></div>
-                <h3 class="text-3xl font-bold mb-4">SynaptiGenix</h3>
-                <p class="text-gray-400">Données synthétiques autonomes • Jarris • Orphée • Déployé en Afrique</p>
-                <a href="https://synaptigenix.com" target="_blank" class="text-cyan-400 font-bold mt-6 inline-block">synaptigenix.com</a>
+    <section id="projets" class="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-24 bg-white/5">
+        <h2 class="text-4xl sm:text-5xl font-black text-center mb-12 sm:mb-20 reveal">Projets & Écosystèmes</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+            <div class="card p-8 hover-lift stagger" data-delay="0.1">
+                <div class="bg-gradient-to-br from-cyan-500 to-blue-700 h-48 sm:h-56 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-4">SynaptiGenix</h3>
+                <p class="text-gray-400 text-sm sm:text-base">Données synthétiques autonomes • Jarris • Orphée • Déployé en Afrique</p>
+                <a href="https://synapti-genix.vercel.app/" target="_blank" class="text-cyan-400 font-bold mt-6 inline-block">synapti-genix.vercel.app</a>
             </div>
-            <div class="card p-10 hover-lift stagger" data-delay="0.2">
-                <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-56 rounded-2xl mb-6"></div>
-                <h3 class="text-3xl font-bold mb-4">Lyx</h3>
-                <p class="text-gray-400">+25 000 devs • IA créative • No-code • Formations</p>
-                <a href="#" class="text-purple-400 font-bold mt-6 inline-block">lyx.dev</a>
+            <div class="card p-8 hover-lift stagger" data-delay="0.2">
+                <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-48 sm:h-56 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-4">Lyx Developer Community</h3>
+                <p class="text-gray-400 text-sm sm:text-base">+25 000 développeurs • IA créative • No-code • Formations</p>
+                <a href="#" class="text-purple-400 font-bold mt-6 inline-block">Lancement 2026</a>
             </div>
-            <div class="card p-10 hover-lift stagger" data-delay="0.3">
-                <div class="bg-gradient-to-br from-green-500 to-emerald-700 h-56 rounded-2xl mb-6"></div>
-                <h3 class="text-3xl font-bold mb-4">Athena.OS</h3>
-                <p class="text-gray-400">OS décentralisé • Privacy-first • Pilotes Afrique 2026</p>
+            <div class="card p-8 hover-lift stagger" data-delay="0.3">
+                <div class="bg-gradient-to-br from-green-500 to-emerald-700 h-48 sm:h-56 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-4">Athena.OS</h3>
+                <p class="text-gray-400 text-sm sm:text-base">OS décentralisé • Privacy-first • Pilotes Afrique 2026</p>
                 <a href="#" class="text-green-400 font-bold mt-6 inline-block">Lancement 2026</a>
             </div>
+        </div>
+        <!-- BOUTON "VOIR PLUS DE PROJETS" -->
+        <div class="text-center mt-12 sm:mt-16">
+            <a href="#" class="btn-ghost text-lg sm:text-xl px-12 py-5">Voir plus de projets →</a>
         </div>
     </section>
 
     <!-- VISION -->
-    <section id="vision" class="py-40 text-center px-6">
+    <section id="vision" class="py-32 sm:py-40 text-center px-4 sm:px-6">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-6xl font-black mb-16 reveal">Comment je vois la vie</h2>
-            <div class="text-2xl md:text-3xl leading-relaxed text-gray-300 space-y-10 reveal">
+            <h2 class="text-5xl sm:text-6xl font-black mb-12 sm:mb-16 reveal">Comment je vois la vie</h2>
+            <div class="text-xl sm:text-2xl md:text-3xl leading-relaxed text-gray-300 space-y-8 reveal">
                 <p>Je ne crois pas au « possible ».</p>
                 <p>Je crois au <span class="text-cyan-400 font-black">nécessaire</span>.</p>
-                <p class="mt-12">L’innovation n’est pas un hobby.<br>C’est une <span class="text-purple-400 font-black">responsabilité historique</span>.</p>
-                <p class="mt-12 text-5xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                <p class="mt-8 sm:mt-12">L’innovation n’est pas un hobby.<br>C’est une <span class="text-purple-400 font-black">responsabilité historique</span>.</p>
+                <p class="mt-12 text-4xl sm:text-5xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                     Que l’Afrique devienne la première puissance technologique du XXIe siècle.
                 </p>
             </div>
@@ -211,12 +210,12 @@
     </section>
 
     <!-- AFRIQUE -->
-    <section id="afrique" class="max-w-7xl mx-auto px-6 py-32 text-center">
-        <h2 class="text-6xl font-black mb-16 reveal">L’Afrique est mon terrain de jeu</h2>
-        <div class="grid md:grid-cols-3 gap-12">
-            <div class="card p-12 reveal"><p class="text-5xl font-black text-cyan-400">14</p><p class="text-2xl text-gray-400 mt-4">Pays partenaires</p></div>
-            <div class="card p-12 reveal"><p class="text-5xl font-black text-purple-400">€31M</p><p class="text-2xl text-gray-400 mt-4">Levés sur le continent</p></div>
-            <div class="card p-12 reveal"><p class="text-5xl font-black text-green-400">2027</p><p class="text-2xl text-gray-400 mt-4">Athena.OS dans 20 pays</p></div>
+    <section id="afrique" class="max-w-7xl mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center">
+        <h2 class="text-5xl sm:text-6xl font-black mb-12 sm:mb-16 reveal">L’Afrique est mon terrain de jeu</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
+            <div class="card p-10 reveal"><p class="text-5xl font-black text-cyan-400">14</p><p class="text-xl sm:text-2xl text-gray-400 mt-4">Pays partenaires</p></div>
+            <div class="card p-10 reveal"><p class="text-5xl font-black text-purple-400">€31M</p><p class="text-xl sm:text-2xl text-gray-400 mt-4">Levés sur le continent</p></div>
+            <div class="card p-10 reveal"><p class="text-5xl font-black text-green-400">2027</p><p class="text-xl sm:text-2xl text-gray-400 mt-4">Athena.OS dans 20 pays</p></div>
         </div>
     </section>
 
@@ -224,42 +223,41 @@
     <div class="purple-gradient-start">
 
         <!-- TÉMOIGNAGES -->
-        <section class="max-w-7xl mx-auto px-6 py-32">
-            <h2 class="text-5xl font-black text-center mb-20 reveal">Ce qu’ils disent de moi</h2>
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="card p-10 stagger" data-delay="0.1">
-                    <p class="italic text-xl text-gray-300 mb-8">"Olympe ne construit pas des startups. Il construit l’avenir de l’Afrique."</p>
-                    <p class="font-bold text-purple-400 text-lg">Ministre du Numérique — Sénégal</p>
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 py-24 sm:py-32">
+            <h2 class="text-4xl sm:text-5xl font-black text-center mb-12 sm:mb-20 reveal">Ce qu’ils disent de moi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+                <div class="card p-8 stagger" data-delay="0.1">
+                    <p class="italic text-lg sm:text-xl text-gray-300 mb-6">"Olympe ne construit pas des startups. Il construit l’avenir de l’Afrique."</p>
+                    <p class="font-bold text-purple-400 text-base sm:text-lg">Ministre du Numérique — Sénégal</p>
                 </div>
-                <div class="card p-10 stagger" data-delay="0.2">
-                    <p class="italic text-xl text-gray-300 mb-8">"SynaptiGenix est déjà dans nos systèmes de santé nationaux."</p>
-                    <p class="font-bold text-purple-400 text-lg">Dr. Amadou Traoré — Côte d’Ivoire</p>
+                <div class="card p-8 stagger" data-delay="0.2">
+                    <p class="italic text-lg sm:text-xl text-gray-300 mb-6">"SynaptiGenix est déjà dans nos systèmes de santé nationaux."</p>
+                    <p class="font-bold text-purple-400 text-base sm:text-lg">Dr. Amadou Traoré — Côte d’Ivoire</p>
                 </div>
-                <div class="card p-10 stagger" data-delay="0.3">
-                    <p class="italic text-xl text-gray-300 mb-8">"Lyx a changé la vie de milliers de jeunes devs africains."</p>
-                    <p class="font-bold text-purple-400 text-lg">Fatou Diop — Rwanda</p>
+                <div class="card p-8 stagger" data-delay="0.3">
+                    <p class="italic text-lg sm:text-xl text-gray-300 mb-6">"Lyx a changé la vie de milliers de jeunes devs africains."</p>
+                    <p class="font-bold text-purple-400 text-base sm:text-lg">Fatou Diop — Rwanda</p>
                 </div>
             </div>
         </section>
 
         <!-- RECRUTEMENT -->
-        <section class="py-48 text-center">
-            <div class="max-w-5xl mx-auto px-6">
-                <h2 class="text-7xl font-black mb-16 reveal">On recrute les 0,01 %</h2>
-                <p class="text-3xl text-gray-300 mb-16 reveal">
-                    Si tu as déjà fait l’impossible,<br>
-                    et que tu veux le refaire à l’échelle d’un continent…
+        <section class="py-32 sm:py-48 text-center px-4">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-5xl sm:text-7xl font-black mb-10 sm:mb-16 reveal">On recrute les 0,01 %</h2>
+                <p class="text-xl sm:text-3xl text-gray-300 mb-10 sm:mb-16 reveal">
+                    Si tu as déjà fait l’impossible,<br class="hidden sm:block"> et que tu veux le refaire à l’échelle d’un continent…
                 </p>
-                <a href="mailto:join@wildene.io" class="btn-primary text-3xl px-24 py-8 reveal">
+                <a href="mailto:join@wildene.io" class="btn-primary text-xl sm:text-3xl px-12 sm:px-24 py-6 sm:py-8 reveal">
                     join@wildene.io
                 </a>
             </div>
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="max-w-7xl mx-auto px-6 py-32 text-center">
-            <h2 class="text-6xl font-black mb-12 reveal">On discute ?</h2>
-            <a href="mailto:olympe@wildene.io" class="btn-primary text-3xl px-28 py-9 reveal">
+        <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 py-24 sm:py-32 text-center">
+            <h2 class="text-5xl sm:text-6xl font-black mb-10 sm:mb-12 reveal">On discute ?</h2>
+            <a href="mailto:olympe@wildene.io" class="btn-primary text-xl sm:text-3xl px-16 sm:px-28 py-6 sm:py-9 reveal">
                 olympe@wildene.io
             </a>
         </section>
@@ -267,9 +265,9 @@
     </div>
 
     <!-- FOOTER NOIR PUR -->
-    <footer class="text-center py-24 border-t border-white/10 bg-black">
-        <p class="text-gray-500 text-lg">© 2025 Olympe Wildene • Tous droits réservés</p>
-        <p class="text-gray-600 text-sm mt-6">Pas de bullshit. Que des résultats.</p>
+    <footer class="text-center py-16 sm:py-24 border-t border-white/10 bg-black">
+        <p class="text-gray-500 text-base sm:text-lg">© 2025 Olympe Wildene • Tous droits réservés</p>
+        <p class="text-gray-600 text-sm mt-4">Pas de bullshit. Que des résultats.</p>
     </footer>
 
     <script>
@@ -284,7 +282,6 @@
                 }
             });
         }, { threshold: window.innerWidth < 768 ? 0.1 : 0.15 });
-
         document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
     </script>
 </body>
