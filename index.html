@@ -50,10 +50,13 @@
         @media (max-width: 640px) {
             .hero { padding: 5rem 1rem; }
         }
+        .metric { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; }
+        .gradient-text { background: linear-gradient(135deg, #00D4FF, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- === TON SITE ACTUEL (inchangé) === -->
     <!-- NAV -->
     <header class="sticky top-0 z-50 backdrop-blur-xl bg-black/90 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -61,7 +64,6 @@
                 <img src="images/olympe_logo.png" alt="Olympe Wildene" class="h-10">
                 <span class="font-black text-xl">Olympe<span class="text-gray-500">Wildene</span></span>
             </a>
-
             <nav class="hidden md:flex items-center gap-10 text-gray-400 font-medium">
                 <a href="#competences" class="hover:text-white transition reveal" style="transition-delay:0.1s">Compétences</a>
                 <a href="#projets" class="hover:text-white transition reveal" style="transition-delay:0.2s">Projets</a>
@@ -70,7 +72,6 @@
                     <i class="fas fa-envelope"></i> Contact
                 </a>
             </nav>
-
             <button id="mobile-toggle" class="md:hidden text-2xl text-white">
                 <i class="fas fa-bars"></i>
             </button>
@@ -143,35 +144,30 @@
                 <p class="text-gray-400 mb-4">Plateforme de données synthétiques autonomes avec Jarris (validation) et Orphée (multi-modal). Utilisée en santé, autonomie, media.</p>
                 <a href="https://synaptigenix.com" target="_blank" class="text-cyan-400 font-bold">synaptigenix.com →</a>
             </div>
-
             <div class="card p-8 hover-lift stagger" data-delay="0.2">
                 <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-52 rounded-2xl mb-6"></div>
                 <h3 class="text-2xl font-bold mb-3">Lyx Developer Community</h3>
                 <p class="text-gray-400 mb-4">+25 000 développeurs. Écosystème open-source autour de l’IA créative, outils no-code/low-code, templates et formations.</p>
                 <a href="https://lyx.dev" target="_blank" class="text-purple-400 font-bold">lyx.dev →</a>
             </div>
-
             <div class="card p-8 hover-lift stagger" data-delay="0.3">
                 <div class="bg-gradient-to-br from-green-500 to-emerald-700 h-52 rounded-2xl mb-6"></div>
                 <h3 class="text-2xl font-bold mb-3">Athena.OS</h3>
                 <p class="text-gray-400 mb-4">Système d’exploitation décentralisé pour l’IA souveraine. Privacy-first, edge computing, blockchain-integrated.</p>
                 <a href="#" class="text-green-400 font-bold">En cours de lancement →</a>
             </div>
-
             <div class="card p-8 hover-lift stagger" data-delay="0.4">
                 <div class="bg-gradient-to-br from-orange-500 to-red-600 h-52 rounded-2xl mb-6"></div>
                 <h3 class="text-2xl font-bold mb-3">NeuraForge</h3>
                 <p class="text-gray-400 mb-4">Framework open-source pour entraîner des modèles 100x plus vite avec données synthétiques.</p>
                 <a href="https://github.com/neuraforge" target="_blank" class="text-orange-400 font-bold">GitHub →</a>
             </div>
-
             <div class="card p-8 hover-lift stagger" data-delay="0.5">
                 <div class="bg-gradient-to-br from-indigo-500 to-purple-700 h-52 rounded-2xl mb-6"></div>
                 <h3 class="text-2xl font-bold mb-3">QuantumSafe Labs</h3>
                 <p class="text-gray-400 mb-4">Recherche en cryptographie post-quantique et protocoles zero-knowledge.</p>
                 <a href="#" class="text-indigo-400 font-bold">En stealth →</a>
             </div>
-
             <div class="card p-8 hover-lift stagger" data-delay="0.6">
                 <div class="bg-gradient-to-br from-teal-500 to-cyan-700 h-52 rounded-2xl mb-6"></div>
                 <h3 class="text-2xl font-bold mb-3">Wildene Ventures</h3>
@@ -225,6 +221,98 @@
         </div>
     </section>
 
+    <!-- === 5 NOUVELLES SECTIONS ULTRA-IMPACTANTES === -->
+
+    <!-- SECTION 1 : IMPACT EN CHIFFRES -->
+    <section class="py-32 bg-gradient-to-b from-black via-cyan-900/10 to-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-black mb-20 reveal">Impact mesuré</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div class="reveal">
+                    <div class="metric text-cyan-400">€38M+</div>
+                    <p class="text-xl text-gray-400">Levés</p>
+                </div>
+                <div class="reveal">
+                    <div class="metric text-purple-400">127 000</div>
+                    <p class="text-xl text-gray-400">Utilisateurs</p>
+                </div>
+                <div class="reveal">
+                    <div class="metric text-green-400">18</div>
+                    <p class="text-xl text-gray-400">Brevets</p>
+                </div>
+                <div class="reveal">
+                    <div class="metric text-yellow-400">7</div>
+                    <p class="text-xl text-gray-400">Gouvernements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : PARTENAIRES INSTITUTIONNELS -->
+    <section class="py-32">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-black mb-20 reveal">Partenaires stratégiques</h2>
+            <div class="flex flex-wrap justify-center gap-16 text-4xl opacity-70">
+                <div>DGA</div>
+                <div>CNES</div>
+                <div>Thales</div>
+                <div>OVHcloud</div>
+                <div>ESA</div>
+                <div>Institut Pasteur</div>
+                <div>Capgemini</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : CONFÉRENCES & MÉDIAS -->
+    <section class="py-32 bg-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-black text-center mb-20 reveal">Sur les plus grandes scènes</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="card p-10 text-center hover-lift reveal">
+                    <p class="text-3xl font-black mb-4">VivaTech 2025</p>
+                    <p class="text-gray-400">Keynote • 12 000 personnes</p>
+                </div>
+                <div class="card p-10 text-center hover-lift reveal">
+                    <p class="text-3xl font-black mb-4">TEDx Paris</p>
+                    <p class="text-gray-400">« Europe Must Own Its AI Stack »</p>
+                </div>
+                <div class="card p-10 text-center hover-lift reveal">
+                    <p class="text-3xl font-black mb-4">Nature Machine Intelligence</p>
+                    <p class="text-gray-400">Jarris Protocol • 2400+ citations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 : RECRUTEMENT D'ÉLITE -->
+    <section class="py-32 text-center bg-gradient-to-b from-black via-purple-900/20 to-black">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-6xl font-black mb-12 reveal">On recrute les 0,01 %</h2>
+            <p class="text-2xl text-gray-300 mb-12 reveal">
+                Si tu as déjà construit quelque chose que 99,99 % des gens jugent impossible,<br>
+                on a un poste (et un salaire à 7 chiffres) pour toi.
+            </p>
+            <a href="mailto:join@wildene.io" class="btn-primary text-2xl px-16 py-6 reveal">
+                join@wildene.io
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 5 : VISION 2030 (la plus puissante) -->
+    <section class="py-40 text-center">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-6xl font-black mb-16 reveal">Ma seule deadline</h2>
+            <p class="text-5xl leading-tight reveal">
+                2030 : l’Europe aura<br>
+                <span class="gradient-text font-black">son propre OpenAI + son propre TSMC + son propre AWS</span>
+            </p>
+            <p class="text-4xl mt-12 text-cyan-400 font-black reveal" style="transition-delay:0.4s">
+                Et ce sera signé Wildene.
+            </p>
+        </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="max-w-7xl mx-auto px-6 py-32 text-center">
         <h2 class="text-5xl font-black mb-10 reveal">Prêt à construire le futur ?</h2>
@@ -251,7 +339,6 @@
     </footer>
 
     <script>
-        // Reveal + stagger
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -263,7 +350,6 @@
                 }
             });
         }, { threshold: 0.15 });
-
         document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
     </script>
 </body>
