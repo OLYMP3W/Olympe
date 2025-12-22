@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olympe Wildene | Visionnaire Tech</title>
+    <title>Olympe Wildene | Visionnaire Tech • SynaptiGenix • Lyx • Athena.OS</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="description" content="Fondateur de SynaptiGenix. Architecte de l’IA souveraine et du futur technologique africain.">
     
@@ -16,10 +16,10 @@
         :root {
             --apple-black: #000000;
             --apple-dark: #050505;
-            --apple-card: #121212;
+            --apple-card: #0c0c0d;
             --apple-blue: #0071e3;
             --apple-purple: #a100ff;
-            --transition-smooth: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-smooth: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * {
@@ -37,26 +37,34 @@
             overflow-x: hidden;
         }
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--apple-black); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
 
-        /* --- Glassmorphism & Effects --- */
+        /* --- Apple Glass & Gradients --- */
         .glass-nav {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
         }
 
-        .hero-gradient {
-            background: radial-gradient(circle at 50% 50%, rgba(161, 0, 255, 0.15) 0%, transparent 70%);
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% -20%, rgba(161, 0, 255, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* --- Reveal Animations --- */
+        /* --- Animations --- */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
             transition: var(--transition-smooth);
         }
 
@@ -65,193 +73,149 @@
             transform: translateY(0);
         }
 
+        .stagger-item {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: var(--transition-smooth);
+        }
+
+        .stagger-item.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         /* --- Typography --- */
-        .title-display {
-            font-size: clamp(56px, 15vw, 160px);
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            line-height: 0.9;
+        .title-hero {
+            font-size: clamp(64px, 18vw, 180px);
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            line-height: 0.85;
+            text-transform: uppercase;
         }
 
         /* --- Image Styling --- */
-        .profile-container {
-            position: relative;
+        .profile-mask {
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: -5vh auto 0;
+            position: relative;
+            z-index: 10;
         }
 
-        .profile-image {
+        .profile-img {
             width: 100%;
             height: auto;
-            border-radius: 40px;
-            filter: grayscale(20%) contrast(110%);
+            border-radius: 60px;
+            filter: grayscale(100%);
             transition: var(--transition-smooth);
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         }
 
-        .profile-image:hover {
-            filter: grayscale(0%) contrast(100%);
-            transform: scale(1.02);
+        .profile-img:hover {
+            filter: grayscale(0%);
+            transform: translateY(-10px);
         }
 
-        /* --- Bento Grid Evolution --- */
-        .bento-card {
+        /* --- Projects Grid --- */
+        .project-grid-item {
             background: var(--apple-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 35px;
-            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 40px;
+            padding: 50px;
             transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .bento-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: #1a1a1a;
+        .project-grid-item:hover {
+            background: #111112;
+            border-color: rgba(255,255,255,0.15);
         }
 
-        .bento-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, #666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* --- Skills Bento --- */
+        .bento-skill {
+            background: #09090a;
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.4s ease;
         }
 
-        /* --- Interactive Buttons --- */
-        .btn-vision {
-            padding: 18px 40px;
+        .bento-skill:hover {
+            border-color: var(--apple-purple);
+            transform: translateY(-5px);
+        }
+
+        .btn-apple {
             background: #fff;
             color: #000;
+            padding: 16px 36px;
             border-radius: 100px;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 16px;
             transition: var(--transition-smooth);
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .btn-vision:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        .btn-apple:hover {
+            transform: scale(1.03);
+            background: #f0f0f5;
         }
 
-        @media (max-width: 768px) {
-            .title-display { font-size: 70px; }
-            .bento-card { padding: 25px; }
+        .text-glow-purple {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(161, 0, 255, 0.4);
         }
     </style>
 </head>
-<body class="hero-gradient">
+<body>
+
+    <div class="bg-glow"></div>
 
     <!-- NAVIGATION -->
-    <header class="fixed top-0 w-full z-[9999] glass-nav border-b border-white/10">
+    <header class="fixed top-0 w-full z-[9999] glass-nav border-b border-white/5">
         <nav class="max-w-[1400px] mx-auto h-16 flex items-center justify-between px-6 md:px-12">
             <div class="flex items-center gap-3">
                 <img src="images/favicon.ico" alt="Logo" class="w-6 h-6">
-                <a href="#" class="text-lg font-black tracking-tighter uppercase">Olympe Wildene</a>
+                <a href="#" class="text-lg font-black tracking-tighter uppercase">Wildene</a>
             </div>
-            <div class="hidden md:flex gap-10">
-                <a href="#vision" class="text-xs font-medium text-white/60 hover:text-white uppercase tracking-widest transition">Vision</a>
-                <a href="#projets" class="text-xs font-medium text-white/60 hover:text-white uppercase tracking-widest transition">Systèmes</a>
-                <a href="#expertise" class="text-xs font-medium text-white/60 hover:text-white uppercase tracking-widest transition">Expertise</a>
+            <div class="hidden lg:flex gap-10">
+                <a href="#projets" class="text-[10px] font-bold text-white/40 hover:text-white uppercase tracking-[0.2em] transition">Portfolio</a>
+                <a href="#expertise" class="text-[10px] font-bold text-white/40 hover:text-white uppercase tracking-[0.2em] transition">Compétences</a>
+                <a href="#vision" class="text-[10px] font-bold text-white/40 hover:text-white uppercase tracking-[0.2em] transition">Manifeste</a>
             </div>
-            <a href="mailto:olympe@wildene.io" class="bg-white text-black text-[10px] font-black px-5 py-2 rounded-full hover:bg-white/90 transition">TRAVAILLONS ENSEMBLE</a>
+            <a href="mailto:olympe@wildene.io" class="bg-white text-black text-[10px] font-black px-6 py-2 rounded-full hover:invert transition">DISCUTER</a>
         </nav>
     </header>
 
     <main>
-        <!-- HERO SECTION -->
-        <section class="min-h-screen flex flex-col justify-center items-center pt-24 px-6 text-center">
-            <div class="reveal">
-                <span class="inline-block px-4 py-1 border border-white/20 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase text-white/40 mb-8">
-                    Architecte de la Souveraineté Numérique
-                </span>
-                <h1 class="title-display mb-12">OLYMPE<br><span class="text-white/20">WILDENE</span></h1>
-                
-                <!-- TA PHOTO ICI -->
-                <div class="profile-container mb-12">
-                    <img src="images/olympe.jpg" alt="Olympe Wildene" class="profile-image">
+        <!-- HERO -->
+        <section class="min-h-screen flex flex-col justify-center pt-32 px-6">
+            <div class="max-w-[1400px] mx-auto w-full">
+                <div class="reveal">
+                    <h1 class="title-hero mb-4">OLYMPE</h1>
+                    <h1 class="title-hero text-white/10 mb-12">WILDENE</h1>
                 </div>
 
-                <p class="text-lg md:text-2xl text-white/60 max-w-2xl mx-auto font-light leading-relaxed mb-12">
-                    Bâtisseur d'écosystèmes technologiques en Afrique. Fondateur de <span class="text-white font-medium">SynaptiGenix</span>. 
-                    Je transforme les données synthétiques en puissance souveraine.
-                </p>
-                <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a href="#projets" class="btn-vision">Voir mes projets <i class="fas fa-chevron-right text-xs"></i></a>
-                    <a href="https://synapti-genix.vercel.app/" class="flex items-center gap-3 text-white/40 hover:text-white font-bold transition">
-                        <i class="fas fa-brain"></i> SynaptiGenix.io
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- VISION (FULL DARK) -->
-        <section id="vision" class="py-40 bg-white text-black">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="grid lg:grid-cols-2 gap-12 items-end">
                     <div class="reveal">
-                        <h2 class="text-sm font-black tracking-[0.4em] text-black/30 uppercase mb-6">Manifeste</h2>
-                        <p class="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tighter">
-                            L'Afrique ne doit pas seulement consommer la tech.<br>Elle doit la <span class="text-black/30 italic">définir</span>.
-                        </p>
-                    </div>
-                    <div class="reveal">
-                        <p class="text-xl text-black/60 font-medium leading-relaxed mb-8">
-                            Mon travail consiste à briser la dépendance technologique. À travers SynaptiGenix et Athena.OS, nous créons des infrastructures qui respectent notre vie privée et nos réalités continentales.
-                        </p>
-                        <div class="flex gap-4">
-                            <div class="h-[2px] w-20 bg-black mt-4"></div>
-                            <p class="font-black text-2xl">Visionnaire Tech & Stratège</p>
+                        <div class="profile-mask">
+                            <img src="images/olympe.jpg" alt="Olympe Wildene" class="profile-img">
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJETS (CINEMATIC) -->
-        <section id="projets" class="py-40 px-6">
-            <div class="max-w-[1400px] mx-auto">
-                <h2 class="text-4xl md:text-6xl font-black mb-24 reveal">Systèmes Déployés</h2>
-                
-                <div class="grid gap-12">
-                    <!-- SynaptiGenix -->
-                    <div class="reveal group relative overflow-hidden rounded-[50px] bg-[#0a0a0a] border border-white/5 p-8 md:p-20">
-                        <div class="flex flex-col md:flex-row justify-between gap-12 relative z-10">
-                            <div class="max-w-xl">
-                                <span class="text-purple-500 font-black tracking-widest text-[10px] uppercase">Data Synthesis Engine</span>
-                                <h3 class="text-5xl md:text-7xl font-bold mt-4 mb-8">SynaptiGenix</h3>
-                                <p class="text-xl text-white/50 mb-10">
-                                    L'outil ultime pour générer des données synthétiques massives. Utilisé pour entraîner des IA sans jamais compromettre la confidentialité des utilisateurs.
-                                </p>
-                                <a href="https://synapti-genix.vercel.app/" class="text-white font-bold border-b-2 border-white/20 pb-2 hover:border-white transition">EXPLORER L'ENGINE</a>
-                            </div>
-                            <div class="md:w-1/2 h-[300px] md:h-[500px] bg-gradient-to-br from-purple-900/20 to-black rounded-[40px] border border-white/5 overflow-hidden">
-                                <!-- Mockup ou Image de données ici -->
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <i class="fas fa-project-diagram text-8xl text-white/5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Athena.OS -->
-                    <div class="reveal group relative overflow-hidden rounded-[50px] bg-[#0a0a0a] border border-white/5 p-8 md:p-20">
-                        <div class="flex flex-col md:flex-row-reverse justify-between gap-12 relative z-10">
-                            <div class="max-w-xl">
-                                <span class="text-blue-500 font-black tracking-widest text-[10px] uppercase">Sovereign OS</span>
-                                <h3 class="text-5xl md:text-7xl font-bold mt-4 mb-8">Athena.OS</h3>
-                                <p class="text-xl text-white/50 mb-10">
-                                    Réinventer l'interface homme-machine. Un système d'exploitation décentralisé et ultra-sécurisé conçu pour le futur de l'Afrique.
-                                </p>
-                                <span class="px-6 py-2 rounded-full bg-white/5 text-white/40 text-xs font-black uppercase tracking-widest">En Développement • 2026</span>
-                            </div>
-                            <div class="md:w-1/2 h-[300px] md:h-[500px] bg-gradient-to-br from-blue-900/20 to-black rounded-[40px] border border-white/5 flex items-center justify-center">
-                                <i class="fas fa-shield-halved text-8xl text-white/5"></i>
+                    <div class="reveal pb-20">
+                        <p class="text-2xl md:text-4xl font-light text-white/60 leading-tight mb-12">
+                            Architecte de l’IA souveraine & bâtisseur du futur technologique africain. Je ne construis pas des outils, je construis des <span class="text-white font-medium">empires numériques</span>.
+                        </p>
+                        <div class="flex flex-wrap gap-6">
+                            <a href="#projets" class="btn-apple">Explorer l'écosystème <i class="fas fa-arrow-down text-xs"></i></a>
+                            <div class="flex items-center gap-4 text-white/30 text-sm font-bold tracking-widest uppercase">
+                                <span class="w-8 h-[1px] bg-white/20"></span> Fondateur SynaptiGenix
                             </div>
                         </div>
                     </div>
@@ -259,67 +223,187 @@
             </div>
         </section>
 
-        <!-- EXPERTISE (BENTO 2.0) -->
-        <section id="expertise" class="py-40 px-6 max-w-7xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-5xl md:text-8xl font-black tracking-tighter">Domaines d'impact.</h2>
+        <!-- EXPERTISE (COMPÉTENCES AMÉLIORÉES) -->
+        <section id="expertise" class="py-40 px-6 max-w-[1400px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-24 reveal">
+                <h2 class="text-5xl md:text-8xl font-black tracking-tighter">Domaines de <br>maîtrise.</h2>
+                <p class="text-white/40 text-xl max-w-sm mt-6">Une fusion entre ingénierie de pointe et vision stratégique globale.</p>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- IA -->
+                <div class="bento-skill reveal">
+                    <i class="fas fa-brain text-purple-500 mb-6 text-3xl"></i>
+                    <h4 class="text-2xl font-bold mb-3">IA Générative</h4>
+                    <p class="text-white/40 text-sm">LLMs, GANs & Synthetic Data Engineering pour l'IA souveraine.</p>
+                </div>
+                <!-- Dev -->
+                <div class="bento-skill reveal">
+                    <i class="fas fa-code text-blue-500 mb-6 text-3xl"></i>
+                    <h4 class="text-2xl font-bold mb-3">Fullstack Elite</h4>
+                    <p class="text-white/40 text-sm">Développement d'infrastructures scalables et OS décentralisés.</p>
+                </div>
+                <!-- Stratégie -->
+                <div class="bento-skill reveal">
+                    <i class="fas fa-rocket text-orange-500 mb-6 text-3xl"></i>
+                    <h4 class="text-2xl font-bold mb-3">Product Strategy</h4>
+                    <p class="text-white/40 text-sm">Vision go-to-market et levée de fonds (+31M€ mobilisés).</p>
+                </div>
+                <!-- Sécurité -->
+                <div class="bento-skill reveal">
+                    <i class="fas fa-shield-halved text-green-500 mb-6 text-3xl"></i>
+                    <h4 class="text-2xl font-bold mb-3">Cyber-Souveraineté</h4>
+                    <p class="text-white/40 text-sm">Protection des données et architectures privacy-first.</p>
+                </div>
+            </div>
+
+            <!-- More Skills -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6 reveal">
+                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Blockchain</div>
+                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Edge Computing</div>
+                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Deep Learning</div>
+                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">User Experience</div>
+                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Cloud Native</div>
+                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Hardware Design</div>
+            </div>
+        </section>
+
+        <!-- PROJETS & ÉCOSYSTÈME -->
+        <section id="projets" class="py-40 px-6 max-w-[1400px] mx-auto">
+            <h2 class="text-5xl md:text-8xl font-black mb-24 reveal">L'Écosystème.</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bento-card reveal md:col-span-2">
-                    <i class="fas fa-brain"></i>
-                    <h4 class="text-3xl font-bold mb-4">IA & Données Synthétiques</h4>
-                    <p class="text-white/40 text-lg">Maîtrise des architectures génératives pour pallier le manque de données réelles sur le continent.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- SynaptiGenix -->
+                <div class="project-grid-item reveal">
+                    <div>
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="bg-purple-500/10 text-purple-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Main Venture</span>
+                            <i class="fas fa-external-link-alt text-white/20"></i>
+                        </div>
+                        <h3 class="text-4xl md:text-6xl font-bold mb-6">SynaptiGenix</h3>
+                        <p class="text-white/40 text-xl leading-relaxed">Moteur de génération de données synthétiques pour l'IA souveraine. Remplacer le manque de données réelles par l'excellence algorithmique.</p>
+                    </div>
+                    <div class="mt-12 flex gap-4">
+                        <a href="https://synapti-genix.vercel.app/" target="_blank" class="text-sm font-bold border-b border-white/20 pb-1">synapti-genix.io</a>
+                    </div>
                 </div>
-                <div class="bento-card reveal">
-                    <i class="fas fa-fingerprint"></i>
-                    <h4 class="text-xl font-bold mb-2">Cybersécurité</h4>
-                    <p class="text-white/40">Protection des infrastructures critiques.</p>
+
+                <!-- Lyx Developer Community -->
+                <div class="project-grid-item reveal">
+                    <div>
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="bg-blue-500/10 text-blue-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Community</span>
+                            <i class="fas fa-users text-white/20"></i>
+                        </div>
+                        <h3 class="text-4xl md:text-6xl font-bold mb-6">Lyx Dev</h3>
+                        <p class="text-white/40 text-xl leading-relaxed">Le hub des bâtisseurs de demain. Une communauté d'élite de +25 000 développeurs créant le futur de l'Afrique.</p>
+                    </div>
+                    <div class="mt-12">
+                        <span class="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Full Launch 2026</span>
+                    </div>
                 </div>
-                <div class="bento-card reveal">
-                    <i class="fas fa-cube"></i>
-                    <h4 class="text-xl font-bold mb-2">Web3 Architecture</h4>
-                    <p class="text-white/40">Économies décentralisées.</p>
+
+                <!-- Hermes Ads -->
+                <div class="project-grid-item reveal">
+                    <div>
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="bg-orange-500/10 text-orange-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">AdTech</span>
+                            <i class="fas fa-paper-plane text-white/20"></i>
+                        </div>
+                        <h3 class="text-4xl md:text-6xl font-bold mb-6">Hermes Ads</h3>
+                        <p class="text-white/40 text-xl leading-relaxed">Réseau publicitaire intelligent et respectueux de la vie privée. Ciblage de précision sans tracking invasif.</p>
+                    </div>
+                    <div class="mt-12">
+                        <a href="#" class="text-sm font-bold border-b border-white/20 pb-1">hermes-ads.com</a>
+                    </div>
                 </div>
-                <div class="bento-card reveal md:col-span-2" style="background: linear-gradient(90deg, #121212 0%, #250035 100%);">
-                    <h4 class="text-3xl font-bold mb-4">Product Strategy</h4>
-                    <p class="text-white/60 text-lg">De la vision au déploiement scale-up. Plus de 31M€ de fonds mobilisés pour l'innovation technologique africaine.</p>
+
+                <!-- Athena.OS -->
+                <div class="project-grid-item reveal">
+                    <div>
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="bg-green-500/10 text-green-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Core OS</span>
+                            <i class="fas fa-shield-alt text-white/20"></i>
+                        </div>
+                        <h3 class="text-4xl md:text-6xl font-bold mb-6">Athena.OS</h3>
+                        <p class="text-white/40 text-xl leading-relaxed">Système d'exploitation décentralisé. Une interface souveraine pour protéger l'identité numérique de chaque utilisateur.</p>
+                    </div>
+                    <div class="mt-12">
+                        <span class="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Phase Pilote : 14 Pays</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boutique / Plus de projets -->
+            <div class="mt-12 text-center reveal">
+                <a href="#" class="inline-block py-10 px-20 border border-white/5 rounded-[40px] hover:bg-white/5 transition-all group">
+                    <span class="text-white/40 text-sm uppercase tracking-[0.5em] group-hover:text-white">Voir l'archive complète des projets</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- VISION (CONTRASTE) -->
+        <section id="vision" class="py-60 bg-white text-black">
+            <div class="max-w-[1400px] mx-auto px-6">
+                <div class="reveal">
+                    <h2 class="text-sm font-black tracking-[0.5em] text-black/20 uppercase mb-12">Manifeste</h2>
+                    <p class="text-5xl md:text-8xl font-black tracking-tight leading-[0.9] mb-20">
+                        L’Afrique est mon terrain de jeu. L'innovation est ma <span class="text-black/30 italic">responsabilité</span>.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div>
+                            <p class="text-4xl font-black mb-2">14</p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/40">Pays Partenaires</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-black mb-2">€31M</p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/40">Fonds Mobilisés</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-black mb-2">2027</p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/40">Souveraineté Totale</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER / CONTACT -->
-        <section class="py-60 bg-white text-black text-center px-6">
+        <!-- CONTACT -->
+        <section class="py-60 px-6 text-center">
             <div class="reveal">
-                <h2 class="text-7xl md:text-[12vw] font-black tracking-[ -0.05em] leading-none mb-20">DISCUTONS.</h2>
+                <h2 class="text-6xl md:text-[14vw] font-black tracking-tighter mb-12">BUILD.</h2>
                 <div class="flex flex-col items-center gap-12">
-                    <a href="mailto:olympe@wildene.io" class="text-3xl md:text-6xl font-light hover:text-black/40 transition">olympe@wildene.io</a>
+                    <a href="mailto:olympe@wildene.io" class="text-3xl md:text-5xl font-light hover:text-white/40 transition">olympe@wildene.io</a>
                     <div class="flex gap-10">
-                        <a href="#" class="text-black/40 hover:text-black font-bold text-sm tracking-widest uppercase">LinkedIn</a>
-                        <a href="#" class="text-black/40 hover:text-black font-bold text-sm tracking-widest uppercase">Twitter / X</a>
-                        <a href="#" class="text-black/40 hover:text-black font-bold text-sm tracking-widest uppercase">GitHub</a>
+                        <a href="#" class="text-[10px] font-black tracking-widest uppercase text-white/30 hover:text-white transition">LinkedIn</a>
+                        <a href="#" class="text-[10px] font-black tracking-widest uppercase text-white/30 hover:text-white transition">Twitter / X</a>
+                        <a href="#" class="text-[10px] font-black tracking-widest uppercase text-white/30 hover:text-white transition">GitHub</a>
                     </div>
-                </div>
-                <div class="mt-40">
-                    <p class="text-xs font-black text-black/20 uppercase tracking-[0.5em]">Olympe Wildene © 2025 • Pas de bullshit. Que des résultats.</p>
                 </div>
             </div>
         </section>
     </main>
 
+    <footer class="py-20 border-t border-white/5 bg-black text-center px-6">
+        <p class="text-white/20 text-[10px] font-bold tracking-[0.5em] uppercase">
+            © 2025 Olympe Wildene • Pas de bullshit. Que des résultats.
+        </p>
+    </footer>
+
     <script>
-        // Intersection Observer for Reveal
+        // Reveal Logic
+        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal, .stagger-item').forEach(el => observer.observe(el));
 
-        // Smooth scroll
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
