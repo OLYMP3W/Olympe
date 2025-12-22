@@ -117,22 +117,44 @@
             transform: translateY(-10px);
         }
 
-        /* --- Projects Grid --- */
-        .project-grid-item {
-            background: var(--apple-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 40px;
-            padding: 50px;
+        /* --- Projects Bento Grid Evolution --- */
+        .project-card {
+            position: relative;
+            background: #0f0f10;
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 42px;
+            overflow: hidden;
             transition: var(--transition-smooth);
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .project-grid-item:hover {
-            background: #111112;
-            border-color: rgba(255,255,255,0.15);
+        .project-card:hover {
+            border-color: rgba(255,255,255,0.12);
+            background: #141415;
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+        }
+
+        .project-card .card-content {
+            padding: 48px;
+            z-index: 2;
+        }
+
+        .project-card .card-visual {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.05;
+            font-size: 15rem;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .project-card:hover .card-visual {
+            opacity: 0.1;
+            transform: scale(1.1) rotate(-5deg);
         }
 
         /* --- Skills Bento --- */
@@ -268,76 +290,87 @@
             </div>
         </section>
 
-        <!-- PROJETS & ÉCOSYSTÈME -->
+        <!-- PROJETS & ÉCOSYSTÈME (REDESIGNED BENTO) -->
         <section id="projets" class="py-40 px-6 max-w-[1400px] mx-auto">
-            <h2 class="text-5xl md:text-8xl font-black mb-24 reveal">L'Écosystème.</h2>
+            <div class="reveal mb-24">
+                <h2 class="text-5xl md:text-8xl font-black mb-4">L'Écosystème.</h2>
+                <p class="text-white/30 text-lg uppercase tracking-[0.3em] font-bold">Infrastructures & Communautés</p>
+            </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- SynaptiGenix -->
-                <div class="project-grid-item reveal">
-                    <div>
-                        <div class="flex justify-between items-start mb-12">
-                            <span class="bg-purple-500/10 text-purple-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Main Venture</span>
-                            <i class="fas fa-external-link-alt text-white/20"></i>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
+                
+                <!-- SynaptiGenix : Grand format dominant -->
+                <div class="project-card md:col-span-8 md:row-span-2 reveal">
+                    <i class="fas fa-microchip card-visual"></i>
+                    <div class="card-content flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-8">
+                                <span class="w-10 h-[1px] bg-purple-500"></span>
+                                <span class="text-purple-500 text-[10px] font-black uppercase tracking-widest">Main Engine</span>
+                            </div>
+                            <h3 class="text-5xl md:text-8xl font-black mb-8 leading-none">Synapti<br>Genix</h3>
+                            <p class="text-white/50 text-xl md:text-2xl max-w-xl font-light">
+                                Génération massive de données synthétiques. Nous entraînons l'intelligence sans compromettre la réalité.
+                            </p>
                         </div>
-                        <h3 class="text-4xl md:text-6xl font-bold mb-6">SynaptiGenix</h3>
-                        <p class="text-white/40 text-xl leading-relaxed">Moteur de génération de données synthétiques pour l'IA souveraine. Remplacer le manque de données réelles par l'excellence algorithmique.</p>
-                    </div>
-                    <div class="mt-12 flex gap-4">
-                        <a href="https://synapti-genix.vercel.app/" target="_blank" class="text-sm font-bold border-b border-white/20 pb-1">synapti-genix.io</a>
+                        <div class="mt-12 flex items-center gap-8">
+                            <a href="https://synapti-genix.vercel.app/" target="_blank" class="group flex items-center gap-4 text-sm font-black uppercase tracking-widest">
+                                Explorer l'interface <i class="fas fa-arrow-right text-purple-500 group-hover:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Lyx Developer Community -->
-                <div class="project-grid-item reveal">
-                    <div>
-                        <div class="flex justify-between items-start mb-12">
-                            <span class="bg-blue-500/10 text-blue-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Community</span>
-                            <i class="fas fa-users text-white/20"></i>
+                <!-- Lyx Developer Community : Format vertical -->
+                <div class="project-card md:col-span-4 md:row-span-2 reveal" style="background: linear-gradient(180deg, #0c0c0d 0%, #001a35 100%);">
+                    <i class="fas fa-users card-visual"></i>
+                    <div class="card-content h-full flex flex-col justify-between">
+                        <div>
+                            <span class="text-blue-400 text-[10px] font-black uppercase tracking-widest block mb-6">Hub Communautaire</span>
+                            <h3 class="text-4xl font-black mb-6">Lyx Dev</h3>
+                            <p class="text-white/40 text-lg leading-relaxed mb-6">
+                                Le catalyseur des génies du continent. +25k développeurs unis pour coder l'avenir.
+                            </p>
                         </div>
-                        <h3 class="text-4xl md:text-6xl font-bold mb-6">Lyx Dev</h3>
-                        <p class="text-white/40 text-xl leading-relaxed">Le hub des bâtisseurs de demain. Une communauté d'élite de +25 000 développeurs créant le futur de l'Afrique.</p>
-                    </div>
-                    <div class="mt-12">
-                        <span class="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Full Launch 2026</span>
+                        <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
+                            <p class="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] mb-2">Statut</p>
+                            <p class="text-blue-400 font-bold">Expansion Continentale</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Hermes Ads -->
-                <div class="project-grid-item reveal">
-                    <div>
-                        <div class="flex justify-between items-start mb-12">
-                            <span class="bg-orange-500/10 text-orange-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">AdTech</span>
-                            <i class="fas fa-paper-plane text-white/20"></i>
-                        </div>
-                        <h3 class="text-4xl md:text-6xl font-bold mb-6">Hermes Ads</h3>
-                        <p class="text-white/40 text-xl leading-relaxed">Réseau publicitaire intelligent et respectueux de la vie privée. Ciblage de précision sans tracking invasif.</p>
-                    </div>
-                    <div class="mt-12">
-                        <a href="#" class="text-sm font-bold border-b border-white/20 pb-1">hermes-ads.com</a>
+                <!-- Hermes Ads : Format Horizontal -->
+                <div class="project-card md:col-span-6 reveal">
+                    <i class="fas fa-bullseye card-visual"></i>
+                    <div class="card-content">
+                        <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest block mb-6">Privacy AdTech</span>
+                        <h3 class="text-4xl font-black mb-6">Hermes Ads</h3>
+                        <p class="text-white/40 text-lg max-w-md">L'algorithme publicitaire qui respecte le silence des données privées.</p>
+                        <a href="#" class="inline-block mt-8 text-[10px] font-bold border-b border-white/20 pb-1">hermes-ads.com</a>
                     </div>
                 </div>
 
-                <!-- Athena.OS -->
-                <div class="project-grid-item reveal">
-                    <div>
-                        <div class="flex justify-between items-start mb-12">
-                            <span class="bg-green-500/10 text-green-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Core OS</span>
-                            <i class="fas fa-shield-alt text-white/20"></i>
+                <!-- Athena.OS : Format Horizontal -->
+                <div class="project-card md:col-span-6 reveal" style="border-left: 4px solid #10b981;">
+                    <i class="fas fa-shield-alt card-visual"></i>
+                    <div class="card-content">
+                        <span class="text-green-400 text-[10px] font-black uppercase tracking-widest block mb-6">Sovereign Layer</span>
+                        <h3 class="text-4xl font-black mb-6">Athena.OS</h3>
+                        <p class="text-white/40 text-lg max-w-md">Le système d'exploitation décentralisé qui redonne le pouvoir à l'utilisateur.</p>
+                        <div class="mt-8 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            <span class="text-[10px] font-black text-white/30 uppercase tracking-widest">Phase Pilote Alpha</span>
                         </div>
-                        <h3 class="text-4xl md:text-6xl font-bold mb-6">Athena.OS</h3>
-                        <p class="text-white/40 text-xl leading-relaxed">Système d'exploitation décentralisé. Une interface souveraine pour protéger l'identité numérique de chaque utilisateur.</p>
-                    </div>
-                    <div class="mt-12">
-                        <span class="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Phase Pilote : 14 Pays</span>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Boutique / Plus de projets -->
-            <div class="mt-12 text-center reveal">
-                <a href="#" class="inline-block py-10 px-20 border border-white/5 rounded-[40px] hover:bg-white/5 transition-all group">
-                    <span class="text-white/40 text-sm uppercase tracking-[0.5em] group-hover:text-white">Voir l'archive complète des projets</span>
+            <!-- Footer Section Projets -->
+            <div class="mt-24 flex flex-col md:flex-row justify-between items-center gap-8 reveal border-t border-white/5 pt-12">
+                <p class="text-white/20 font-bold uppercase tracking-widest text-xs">Et 12 autres systèmes en incubation...</p>
+                <a href="#" class="px-10 py-5 bg-white/5 rounded-full hover:bg-white/10 transition text-sm font-black uppercase tracking-widest">
+                    Accéder à l'Archive Complète
                 </a>
             </div>
         </section>
