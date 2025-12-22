@@ -61,6 +61,57 @@
             z-index: 0;
         }
 
+        /* --- NEW HERO TITLE DESIGN --- */
+        .hero-title-container {
+            perspective: 1000px;
+        }
+
+        .title-main {
+            font-size: clamp(80px, 20vw, 220px);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 0.8;
+            text-transform: uppercase;
+            display: block;
+            position: relative;
+        }
+
+        .title-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .title-fill {
+            background: linear-gradient(to bottom, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            color: var(--apple-purple);
+            margin-bottom: 2rem;
+            display: block;
+            animation: fadeInLetter 1.5s ease forwards;
+        }
+
+        @keyframes fadeInLetter {
+            from { opacity: 0; letter-spacing: 1.2em; filter: blur(10px); }
+            to { opacity: 1; letter-spacing: 0.6em; filter: blur(0); }
+        }
+
+        /* Animation au survol du titre */
+        .title-main:hover .title-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.6);
+            transform: translateY(-5px);
+        }
+
         /* --- Animations --- */
         .reveal {
             opacity: 0;
@@ -71,26 +122,6 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .stagger-item {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: var(--transition-smooth);
-        }
-
-        .stagger-item.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* --- Typography --- */
-        .title-hero {
-            font-size: clamp(64px, 18vw, 180px);
-            font-weight: 900;
-            letter-spacing: -0.06em;
-            line-height: 0.85;
-            text-transform: uppercase;
         }
 
         /* --- Image Styling --- */
@@ -117,7 +148,7 @@
             transform: translateY(-10px);
         }
 
-        /* --- Projects Bento Grid Evolution --- */
+        /* --- Projects Bento Grid --- */
         .project-card {
             position: relative;
             background: #0f0f10;
@@ -152,11 +183,6 @@
             pointer-events: none;
         }
 
-        .project-card:hover .card-visual {
-            opacity: 0.1;
-            transform: scale(1.1) rotate(-5deg);
-        }
-
         /* --- Skills Bento --- */
         .bento-skill {
             background: #09090a;
@@ -164,11 +190,6 @@
             padding: 30px;
             border: 1px solid rgba(255,255,255,0.03);
             transition: all 0.4s ease;
-        }
-
-        .bento-skill:hover {
-            border-color: var(--apple-purple);
-            transform: translateY(-5px);
         }
 
         .btn-apple {
@@ -182,16 +203,6 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .btn-apple:hover {
-            transform: scale(1.03);
-            background: #f0f0f5;
-        }
-
-        .text-glow-purple {
-            color: #fff;
-            text-shadow: 0 0 20px rgba(161, 0, 255, 0.4);
         }
     </style>
 </head>
@@ -216,12 +227,17 @@
     </header>
 
     <main>
-        <!-- HERO -->
+        <!-- HERO (RE-DESIGNED TITLE) -->
         <section class="min-h-screen flex flex-col justify-center pt-32 px-6">
             <div class="max-w-[1400px] mx-auto w-full">
-                <div class="reveal">
-                    <h1 class="title-hero mb-4">OLYMPE</h1>
-                    <h1 class="title-hero text-white/10 mb-12">WILDENE</h1>
+                <div class="reveal mb-16">
+                    <span class="hero-subtitle">Bâtisseur de Souveraineté Digitale</span>
+                    <div class="hero-title-container">
+                        <h1 class="title-main">
+                            <span class="title-fill">OLYMPE</span>
+                            <span class="title-outline">WILDENE</span>
+                        </h1>
+                    </div>
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-12 items-end">
@@ -245,7 +261,7 @@
             </div>
         </section>
 
-        <!-- EXPERTISE (COMPÉTENCES AMÉLIORÉES) -->
+        <!-- EXPERTISE (COMPÉTENCES) -->
         <section id="expertise" class="py-40 px-6 max-w-[1400px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-baseline mb-24 reveal">
                 <h2 class="text-5xl md:text-8xl font-black tracking-tighter">Domaines de <br>maîtrise.</h2>
@@ -253,44 +269,30 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- IA -->
                 <div class="bento-skill reveal">
                     <i class="fas fa-brain text-purple-500 mb-6 text-3xl"></i>
                     <h4 class="text-2xl font-bold mb-3">IA Générative</h4>
                     <p class="text-white/40 text-sm">LLMs, GANs & Synthetic Data Engineering pour l'IA souveraine.</p>
                 </div>
-                <!-- Dev -->
                 <div class="bento-skill reveal">
                     <i class="fas fa-code text-blue-500 mb-6 text-3xl"></i>
                     <h4 class="text-2xl font-bold mb-3">Fullstack Elite</h4>
                     <p class="text-white/40 text-sm">Développement d'infrastructures scalables et OS décentralisés.</p>
                 </div>
-                <!-- Stratégie -->
                 <div class="bento-skill reveal">
                     <i class="fas fa-rocket text-orange-500 mb-6 text-3xl"></i>
                     <h4 class="text-2xl font-bold mb-3">Product Strategy</h4>
                     <p class="text-white/40 text-sm">Vision go-to-market et levée de fonds (+31M€ mobilisés).</p>
                 </div>
-                <!-- Sécurité -->
                 <div class="bento-skill reveal">
                     <i class="fas fa-shield-halved text-green-500 mb-6 text-3xl"></i>
                     <h4 class="text-2xl font-bold mb-3">Cyber-Souveraineté</h4>
                     <p class="text-white/40 text-sm">Protection des données et architectures privacy-first.</p>
                 </div>
             </div>
-
-            <!-- More Skills -->
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6 reveal">
-                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Blockchain</div>
-                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Edge Computing</div>
-                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Deep Learning</div>
-                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">User Experience</div>
-                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Cloud Native</div>
-                <div class="bg-white/5 py-4 px-6 rounded-full text-center text-[10px] font-black uppercase tracking-widest border border-white/5">Hardware Design</div>
-            </div>
         </section>
 
-        <!-- PROJETS & ÉCOSYSTÈME (REDESIGNED BENTO) -->
+        <!-- PROJETS & ÉCOSYSTÈME (BENTO) -->
         <section id="projets" class="py-40 px-6 max-w-[1400px] mx-auto">
             <div class="reveal mb-24">
                 <h2 class="text-5xl md:text-8xl font-black mb-4">L'Écosystème.</h2>
@@ -298,8 +300,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
-                
-                <!-- SynaptiGenix : Grand format dominant -->
+                <!-- SynaptiGenix -->
                 <div class="project-card md:col-span-8 md:row-span-2 reveal">
                     <i class="fas fa-microchip card-visual"></i>
                     <div class="card-content flex flex-col h-full justify-between">
@@ -313,7 +314,7 @@
                                 Génération massive de données synthétiques. Nous entraînons l'intelligence sans compromettre la réalité.
                             </p>
                         </div>
-                        <div class="mt-12 flex items-center gap-8">
+                        <div class="mt-12">
                             <a href="https://synapti-genix.vercel.app/" target="_blank" class="group flex items-center gap-4 text-sm font-black uppercase tracking-widest">
                                 Explorer l'interface <i class="fas fa-arrow-right text-purple-500 group-hover:translate-x-2 transition-transform"></i>
                             </a>
@@ -321,61 +322,46 @@
                     </div>
                 </div>
 
-                <!-- Lyx Developer Community : Format vertical -->
+                <!-- Lyx Dev -->
                 <div class="project-card md:col-span-4 md:row-span-2 reveal" style="background: linear-gradient(180deg, #0c0c0d 0%, #001a35 100%);">
                     <i class="fas fa-users card-visual"></i>
                     <div class="card-content h-full flex flex-col justify-between">
                         <div>
                             <span class="text-blue-400 text-[10px] font-black uppercase tracking-widest block mb-6">Hub Communautaire</span>
                             <h3 class="text-4xl font-black mb-6">Lyx Dev</h3>
-                            <p class="text-white/40 text-lg leading-relaxed mb-6">
+                            <p class="text-white/40 text-lg leading-relaxed">
                                 Le catalyseur des génies du continent. +25k développeurs unis pour coder l'avenir.
                             </p>
                         </div>
                         <div class="bg-white/5 p-6 rounded-3xl border border-white/5">
-                            <p class="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] mb-2">Statut</p>
                             <p class="text-blue-400 font-bold">Expansion Continentale</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hermes Ads : Format Horizontal -->
+                <!-- Hermes Ads -->
                 <div class="project-card md:col-span-6 reveal">
                     <i class="fas fa-bullseye card-visual"></i>
                     <div class="card-content">
                         <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest block mb-6">Privacy AdTech</span>
                         <h3 class="text-4xl font-black mb-6">Hermes Ads</h3>
                         <p class="text-white/40 text-lg max-w-md">L'algorithme publicitaire qui respecte le silence des données privées.</p>
-                        <a href="#" class="inline-block mt-8 text-[10px] font-bold border-b border-white/20 pb-1">hermes-ads.com</a>
                     </div>
                 </div>
 
-                <!-- Athena.OS : Format Horizontal -->
+                <!-- Athena.OS -->
                 <div class="project-card md:col-span-6 reveal" style="border-left: 4px solid #10b981;">
                     <i class="fas fa-shield-alt card-visual"></i>
                     <div class="card-content">
                         <span class="text-green-400 text-[10px] font-black uppercase tracking-widest block mb-6">Sovereign Layer</span>
                         <h3 class="text-4xl font-black mb-6">Athena.OS</h3>
                         <p class="text-white/40 text-lg max-w-md">Le système d'exploitation décentralisé qui redonne le pouvoir à l'utilisateur.</p>
-                        <div class="mt-8 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            <span class="text-[10px] font-black text-white/30 uppercase tracking-widest">Phase Pilote Alpha</span>
-                        </div>
                     </div>
                 </div>
-
-            </div>
-
-            <!-- Footer Section Projets -->
-            <div class="mt-24 flex flex-col md:flex-row justify-between items-center gap-8 reveal border-t border-white/5 pt-12">
-                <p class="text-white/20 font-bold uppercase tracking-widest text-xs">Et 12 autres systèmes en incubation...</p>
-                <a href="#" class="px-10 py-5 bg-white/5 rounded-full hover:bg-white/10 transition text-sm font-black uppercase tracking-widest">
-                    Accéder à l'Archive Complète
-                </a>
             </div>
         </section>
 
-        <!-- VISION (CONTRASTE) -->
+        <!-- VISION -->
         <section id="vision" class="py-60 bg-white text-black">
             <div class="max-w-[1400px] mx-auto px-6">
                 <div class="reveal">
@@ -434,7 +420,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal, .stagger-item').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -444,6 +430,15 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Parallax effect on Title
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const outline = document.querySelector('.title-outline');
+            if(outline) {
+                outline.style.transform = `translateX(${scrolled * 0.1}px)`;
+            }
         });
     </script>
 </body>
